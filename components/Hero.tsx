@@ -41,6 +41,12 @@ export default function Hero({
           {primary}
           {secondary}
         </div>
+
+        <div className="mt-10 flex items-center gap-3 text-sm font-semibold text-white/60">
+  <span>Scroll to explore</span>
+  <span className="animate-bounce text-2xl">↓</span>
+</div>
+
       </div>
 
       {image ? (
