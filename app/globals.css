@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark: #141D26;
+  --bg-blue: #243447;
+  --primary: #F300C5;
+  --primary-deep: #C51F5D;
+  --cream: #E2E2D2;
+  --orange: #D98245;
+  --electric-blue: #4162FF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+}
+
+.brand-gradient {
+  background: linear-gradient(110deg, #141D26 0%, #243447 34%, #C51F5D 65%, #E2E2D2 100%);
+}
+
+.brand-gradient-reverse {
+  background: linear-gradient(110deg, #E2E2D2 0%, #C51F5D 36%, #243447 68%, #141D26 100%);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(90deg, #F300C5, #C51F5D, #E2E2D2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+::selection {
+  background: rgba(236, 72, 153, 0.35);
+  color: white;
+}
