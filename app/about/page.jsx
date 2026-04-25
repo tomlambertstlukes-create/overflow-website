@@ -157,7 +157,6 @@ export default function AboutPage() {
         ]}
       />
 
-<Section>
   <Section className="pt-20">
   <Kicker>Leadership & Governance</Kicker>
   <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
@@ -254,7 +253,7 @@ export default function AboutPage() {
         ]}
       />
 
-      <Section>
+            <Section>
         <div className="rounded-[2rem] border border-[#F300C5]/20 bg-gradient-to-br from-[#F300C5]/15 via-[#C51F5D]/10 to-white/[0.04] p-8 sm:p-12">
           <Kicker>Our accountability</Kicker>
           <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
