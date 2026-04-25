@@ -18,11 +18,11 @@ import { images } from "@/lib/data";
 
 const team = [
   {
-    name: "John Baker",
-    role: "Management Group",
-    image: "/images/team/john-baker.jpg",
-    bio: "Brings extensive experience in youth and community leadership, providing strategic oversight and ensuring the work remains rooted in long-term relational impact.",
-  },
+  name: "John Baker",
+  role: "Chair",
+  image: "/images/team/john-baker.jpg",
+  bio: "Brings over 30 years’ experience in corporate banking and finance, leading high-performing teams in London and internationally. He has since worked in charity leadership across the UK and Europe as an Operations Director, supporting organisations through change, restructuring and sustainable growth. More recently, he has served as Chair of the local Foodbank and is currently a Director of a local Outdoor Adventure Centre.",
+},
   {
     name: "Trevor Bright",
     role: "Management Group",
