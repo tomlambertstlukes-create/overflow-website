@@ -4,6 +4,7 @@ import SignatureCard from "@/components/SignatureCard";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
 import ProjectCards from "@/components/ProjectCards";
+import { contact } from "@/lib/data";
 
 export default function ProjectPage({ project }) {
   return (
@@ -11,7 +12,7 @@ export default function ProjectPage({ project }) {
       <Hero
         kicker={project.kicker}
         title={project.title}
-        primary={<Button href="mailto:hello@example.com">Talk to us</Button>}
+        primary={<Button href={`mailto:${contact.email}`}>Talk to us</Button>}
         secondary={<Button href="/projects" variant="ghost">All projects</Button>}
         image={project.image}
         imageAlt={project.imageAlt}

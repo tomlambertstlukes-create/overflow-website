@@ -1,5 +1,6 @@
 import Section from "@/components/Section";
 import Button from "@/components/Button";
+import { contact } from "@/lib/data";
 
 export default function CostBlock() {
   return (
@@ -11,7 +12,7 @@ export default function CostBlock() {
           Funds one Relational Support Worker for a year — creating visible, trusted support across school and community settings.
         </p>
         <div className="mt-8">
-          <Button href="mailto:hello@example.com">Fund a role</Button>
+          <Button href={`mailto:${contact.email}`}>Fund a role</Button>
         </div>
       </div>
     </Section>

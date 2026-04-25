@@ -8,6 +8,7 @@ import CostBlock from "@/components/CostBlock";
 import SystemModel from "@/components/SystemModel";
 import ImpactStats from "@/components/ImpactStats";
 import ProjectCards from "@/components/ProjectCards";
+import { contact } from "@/lib/data";
 
 export default function FundersPage() {
   return (
@@ -15,7 +16,7 @@ export default function FundersPage() {
       <Hero
         kicker="For funders and donors"
         title="Invest in infrastructure-level change."
-        primary={<Button href="mailto:hello@example.com">Fund a role</Button>}
+        primary={<Button href={`mailto:${contact.email}`}>Fund a role</Button>}
         secondary={<Button href="/impact" variant="ghost">View impact</Button>}
         image={images.funders}
         imageAlt="Young people together in a supportive community, representing measurable relational impact"

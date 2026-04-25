@@ -6,6 +6,7 @@ import SignatureCard from "@/components/SignatureCard";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
 import ProjectCards from "@/components/ProjectCards";
+import { contact } from "@/lib/data";
 
 export default function SchoolsPage() {
   return (
@@ -13,7 +14,7 @@ export default function SchoolsPage() {
       <Hero
         kicker="For schools"
         title="A connected wellbeing system for real school life."
-        primary={<Button href="mailto:hello@example.com">Book a conversation</Button>}
+        primary={<Button href={`mailto:${contact.email}`}>Book a conversation</Button>}
         secondary={<Button href="/projects/wellbeing-centres" variant="ghost">Wellbeing Centres</Button>}
         image={images.school}
         imageAlt="A mentoring conversation in a school setting, representing embedded relational support"
