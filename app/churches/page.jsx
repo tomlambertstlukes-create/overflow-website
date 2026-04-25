@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import SignatureCard from "@/components/SignatureCard";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
+import { contact } from "@/lib/data";
 
 export default function ChurchesPage() {
   return (
@@ -12,7 +13,7 @@ export default function ChurchesPage() {
       <Hero
         kicker="For churches"
         title="Reconnecting a generation with the Church."
-        primary={<Button href="mailto:hello@example.com">Partner your church</Button>}
+        primary={<Button href={`mailto:${contact.email}`}>Partner your church</Button>}
         secondary={<Button href="/how-it-works" variant="ghost">Explore the pathway</Button>}
         image={images.church}
         imageAlt="Young people gathered in a community space, representing belonging, faith and long-term connection"
