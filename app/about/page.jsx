@@ -16,6 +16,51 @@ import Section from "@/components/Section";
 import Kicker from "@/components/Kicker";
 import { images } from "@/lib/data";
 
+const team = [
+  {
+    name: "John Baker",
+    role: "Management Group",
+    image: "/images/team/john-baker.jpg",
+    bio: "Brings extensive experience in youth and community leadership, providing strategic oversight and ensuring the work remains rooted in long-term relational impact.",
+  },
+  {
+    name: "Trevor Bright",
+    role: "Management Group",
+    image: "/images/team/trevor-bright.jpg",
+    bio: "Experience in governance and organisational leadership, supporting accountability, structure and sustainable growth.",
+  },
+  {
+    name: "Stuart Beck",
+    role: "Management Group",
+    image: "/images/team/stuart-beck.jpg",
+    bio: "Background in leadership and systems thinking, helping shape scalable models of delivery across community and education settings.",
+  },
+  {
+    name: "Paul Rose",
+    role: "Management Group",
+    image: "/images/team/paul-rose.jpg",
+    bio: "Brings experience in leadership and organisational development, supporting the long-term sustainability of the work.",
+  },
+  {
+    name: "Christine Rose",
+    role: "Management Group",
+    image: "/images/team/christine-rose.jpg",
+    bio: "Experience in pastoral care and wellbeing, ensuring a strong focus on relational support and safeguarding.",
+  },
+  {
+    name: "Kim Elwell-Sutton",
+    role: "Management Group",
+    image: "/images/team/kim-elwell-sutton.jpg",
+    bio: "Background in education and wellbeing, contributing to safe, effective and context-aware delivery within schools.",
+  },
+  {
+    name: "Christine Jee",
+    role: "Management Group",
+    image: "/images/team/christine-jee.jpg",
+    bio: "Experience in community support and organisational leadership, strengthening governance and operational oversight.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -111,6 +156,75 @@ export default function AboutPage() {
           },
         ]}
       />
+
+<Section>
+  <Section className="pt-20">
+  <Kicker>Leadership & Governance</Kicker>
+  <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+    Experienced oversight behind safe, scalable delivery.
+  </h2>
+
+  <p className="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+    Kingdom Overflow is overseen by a management group with experience across
+    youth work, education, psychotherapy, local authority and charity leadership.
+    This ensures the work is not only relational, but also safe, accountable and
+    capable of long-term growth.
+  </p>
+
+  <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {team.map((person) => (
+      <div
+        key={person.name}
+        className="group rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition hover:bg-white/[0.06]"
+      >
+        <div className="overflow-hidden rounded-xl">
+          <img
+            src={person.image}
+            alt={person.name}
+            className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+        </div>
+
+        <h3 className="mt-5 text-xl font-bold">{person.name}</h3>
+        <p className="text-sm text-[#F300C5] font-semibold">
+          {person.role}
+        </p>
+
+        <p className="mt-3 text-sm leading-6 text-white/70">
+          {person.bio}
+        </p>
+      </div>
+    ))}
+  </div>
+</Section>
+
+<Section>
+  <div className="rounded-[2rem] border border-emerald-400/20 bg-emerald-400/10 p-8 sm:p-12">
+    <Kicker>Governance & Safeguarding</Kicker>
+
+    <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+      Built to be trusted.
+    </h2>
+
+    <p className="mt-6 max-w-4xl text-lg leading-8 text-white/80">
+      Kingdom Overflow operates as part of St Luke’s Cranham Park PCC
+      (registered charity number 1128304). Governance and policies are in place
+      for work across education and counselling contexts, with a strong emphasis
+      on safeguarding, accountability and professional standards.
+    </p>
+
+    <p className="mt-4 max-w-4xl text-lg leading-8 text-white/75">
+      The organisation is also a member of the British Association for Counselling
+      and Psychotherapy (BACP), reflecting a commitment to recognised standards
+      in wellbeing and therapeutic practice.
+    </p>
+
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <Button href="/funders">Fund this work</Button>
+      <Button href="/impact" variant="ghost">View impact</Button>
+    </div>
+  </div>
+</Section>
 
       <ProcessFlow
         kicker="Governance in practice"
