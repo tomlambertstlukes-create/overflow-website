@@ -48,11 +48,11 @@ const team = [
     bio: "Experience in pastoral care and wellbeing, ensuring a strong focus on relational support and safeguarding.",
   },
   {
-    name: "Kim Elwell-Sutton",
-    role: "Management Group",
-    image: "/images/team/kim-elwell-sutton.jpg",
-    bio: "Background in education and wellbeing, contributing to safe, effective and context-aware delivery within schools.",
-  },
+  name: "Kim Elwell-Sutton",
+  role: "Education, Governance & Mental Health",
+  image: "/images/team/kim-elwell-sutton.jpg",
+  bio: "Kim brings a strong combination of education, governance and mental health insight. She holds an MSc in War and Psychiatry from King’s College London, alongside a Master’s degree in Music from Oxford University and a Postgraduate Certificate in Education. She has over 10 years’ experience teaching in international schools, working across the UK national curriculum and International Baccalaureate. Kim also advises a government-funded research group exploring therapy provision for young people with special educational needs across NHS and partner services, and has extensive governance experience across primary, secondary, charity and church contexts.",
+},
   {
     name: "Christine Jee",
     role: "Management Group",
