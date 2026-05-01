@@ -30,10 +30,10 @@ const team = [
     bio: "Experience in governance and organisational leadership, supporting accountability, structure and sustainable growth.",
   },
   {
-    name: "Stuart Beck",
-    role: "Management Group",
-    image: "/images/team/stuart-beck.jpg",
-    bio: "Background in leadership and systems thinking, helping shape scalable models of delivery across community and education settings.",
+  name: "Stuart Beck",
+  role: "Education, Governance & Mental Health",
+  image: "/images/team/stuart-beck.jpg",
+  bio: "Stuart brings over 35 years of experience in secondary education, including 30 years on the Senior Leadership Team of an Ofsted ‘Outstanding’ school in Havering, with responsibility spanning academic departments, staffing, finance and whole-school operations. He served as Chair of the Secondary Council of the National Association of Headteachers, contributing to national leadership and policy, including work around the Mental Health Green Paper, alongside engagement with NHS London and the Anna Freud Centre. Stuart also brings strong governance and project delivery experience, including former Chief Finance Officer responsibilities and leadership of a £1.1 million Heritage Lottery Fund project.",
   },
   {
     name: "Paul Rose",
