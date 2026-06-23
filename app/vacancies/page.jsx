@@ -7,7 +7,6 @@ import {
   Network,
   School,
   Users,
-  Download,
   Mail,
 } from "lucide-react";
 import { images, contact } from "@/lib/data";
@@ -94,56 +93,44 @@ export default function VacanciesPage() {
         ]}
       />
 
-      <FeatureGrid
-        kicker="Downloads"
-        title="Read the recruitment pack and complete the application form."
-        intro="Please download the recruitment pack before applying. Applications should include a CV, a completed application form and a supporting statement of no more than two A4 pages."
-        features={[
-          {
-            icon: Download,
-            title: "Recruitment pack",
-            text: "Download the full recruitment pack for role details, responsibilities, outcomes and person specification.",
-          },
-          {
-            icon: FileText,
-            title: "Application form",
-            text: "Complete the application form and return it with your CV and supporting statement.",
-          },
-          {
-            icon: Mail,
-            title: "Submit by email",
-            text: `Send completed applications to ${contact.email}.`,
-          },
-          {
-            icon: CalendarDays,
-            title: "Closing date",
-            text: "Applications close on 3 July 2026.",
-          },
-        ]}
-      />
-
       <ProcessFlow
-        kicker="Application process"
-        title="How to apply."
-        steps={[
-          {
-            title: "Read the pack",
-            text: "Download and read the recruitment pack.",
-          },
-          {
-            title: "Prepare your CV",
-            text: "Include relevant employment, voluntary experience, qualifications and training.",
-          },
-          {
-            title: "Write your statement",
-            text: "Submit a supporting statement of no more than two A4 pages.",
-          },
-          {
-            title: "Send application",
-            text: `Email your CV, statement and application form to ${contact.email}.`,
-          },
-        ]}
-      />
+  kicker="How to apply"
+  title="Download the documents and send your application."
+  steps={[
+    {
+      title: "Download the pack",
+      text: "Read the full recruitment pack before applying.",
+    },
+    {
+      title: "Complete the form",
+      text: "Complete the application form and prepare your CV.",
+    },
+    {
+      title: "Write your statement",
+      text: "Submit a supporting statement of no more than two A4 pages.",
+    },
+    {
+      title: "Send application",
+      text: `Email your CV, statement and application form to ${contact.email}.`,
+    },
+  ]}
+/>
+
+<section className="section">
+  <div className="container">
+    <div className="button-row">
+      <Button href="/downloads/recruitment-pack.pdf">
+        Download recruitment pack
+      </Button>
+      <Button href="/downloads/application-form.docx" variant="ghost">
+        Download application form
+      </Button>
+      <Button href={`mailto:${contact.email}`} variant="ghost">
+        Email application
+      </Button>
+    </div>
+  </div>
+</section>
 
       <FeatureGrid
         kicker="A note to applicants"
