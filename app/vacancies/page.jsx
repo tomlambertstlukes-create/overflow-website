@@ -94,71 +94,67 @@ export default function VacanciesPage() {
       />
 
       <ProcessFlow
-  kicker="How to apply"
-  title="Download the documents and send your application."
-  steps={[
-    {
-      title: "Download the pack",
-      text: "Read the full recruitment pack before applying.",
-    },
-    {
-      title: "Complete the form",
-      text: "Complete the application form and prepare your CV.",
-    },
-    {
-      title: "Write your statement",
-      text: "Submit a supporting statement of no more than two A4 pages.",
-    },
-    {
-      title: "Send application",
-      text: `Email your CV, statement and application form to ${contact.email}.`,
-    },
-  ]}
-/>
-
-<section className="section">
-  <div className="container">
-    <div className="button-row">
-      <Button href="/downloads/recruitment-pack.pdf">
-        Download recruitment pack
-      </Button>
-      <Button href="/downloads/application-form.docx" variant="ghost">
-        Download application form
-      </Button>
-      <Button href={`mailto:${contact.email}`} variant="ghost">
-        Email application
-      </Button>
-    </div>
-  </div>
-</section>
-
-      <FeatureGrid
-        kicker="A note to applicants"
-        title="Experience develops through different routes."
-        intro="If you are excited by the vision, can demonstrate strong relational capability and believe you could contribute to this growing work, we encourage you to apply."
-        features={[
+        kicker="How to apply"
+        title="Download the documents and send your application."
+        steps={[
           {
-            icon: HandHeart,
-            title: "Relational capability",
-            text: "We are interested in people who can build trust, listen well and create safe spaces for young people.",
+            title: "Read the pack",
+            text: "Download and read the full recruitment pack before applying.",
           },
           {
-            icon: Network,
-            title: "Transferable experience",
-            text: "Relevant experience may come through youth work, education, counselling, mentoring, community work, ministry or volunteering.",
+            title: "Prepare your CV",
+            text: "Include relevant employment, voluntary experience, qualifications and training.",
           },
           {
-            icon: Users,
-            title: "Shared vision",
-            text: "We are looking for people who want to help young people belong, access support and realise their potential.",
+            title: "Write your statement",
+            text: "Submit a supporting statement of no more than two A4 pages.",
           },
           {
-            icon: Mail,
-            title: "Informal conversation",
-            text: `For an informal conversation, contact ${contact.email}.`,
+            title: "Send application",
+            text: `Email your CV, statement and completed application form to ${contact.email}.`,
           },
         ]}
       />
+
+      <section className="section">
+        <div className="container">
+          <div className="card accent">
+            <p className="kicker">Ready to apply?</p>
+            <h2>Download the documents and send your application.</h2>
+            <p>
+              If you are excited by the vision and believe you could contribute to this growing work, we would love to hear from you.
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "1rem",
+                flexWrap: "wrap",
+                marginTop: "2rem",
+              }}
+            >
+              <Button href="/downloads/recruitment-pack.pdf">
+                Download Recruitment Pack
+              </Button>
+
+              <Button href="/downloads/application-form.docx" variant="ghost">
+                Download Application Form
+              </Button>
+
+              <Button
+                href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}
+                variant="ghost"
+              >
+                Apply by Email
+              </Button>
+            </div>
+
+            <p style={{ marginTop: "1.5rem" }}>
+              Applications close on <strong>3 July 2026</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
