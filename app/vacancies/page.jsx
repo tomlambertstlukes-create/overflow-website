@@ -7,6 +7,8 @@ import {
   Network,
   School,
   Users,
+  Download,
+  Mail,
 } from "lucide-react";
 import { images, contact } from "@/lib/data";
 import Button from "@/components/Button";
@@ -59,40 +61,66 @@ export default function VacanciesPage() {
           {
             icon: FileText,
             title: "Deadline",
-            text: "Applications close on 3rd July 2026. Interviews will take place on 6th/7th July 2026.",
+            text: "Applications close on 3 July 2026. Interviews will take place on 6/7 July 2026.",
           },
         ]}
       />
 
       <FeatureGrid
-  kicker="About the role"
-  title="A pioneering role that helps build relational infrastructure around young people."
-  intro="This role exists to connect school-based provision, community opportunities, projects and partnerships so young people can access support that is relational, personalised and joined up."
-  features={[
-    {
-      icon: HandHeart,
-      title: "Relational support",
-      text: "Build familiarity, rapport and trusted relationships with young people through mentoring, listening spaces and consistent presence.",
-    },
-    {
-      icon: School,
-      title: "Overflow Hub",
-      text: "Help develop school and community-based drop-in spaces that create belonging, participation and early access to support.",
-    },
-    {
-      icon: Network,
-      title: "Pathway development",
-      text: "Coordinate personalised pathways, signposting and referrals so young people can access the right support at the right time.",
-    },
-    {
-      icon: Users,
-      title: "Partnership working",
-      text: "Work with the wider Kingdom Overflow team, schools, volunteers, community organisations and specialist partners.",
-    },
-  ]}
-/>
+        kicker="About the role"
+        title="A pioneering role that helps build relational infrastructure around young people."
+        intro="This role exists to connect school-based provision, community opportunities, projects and partnerships so young people can access support that is relational, personalised and joined up."
+        features={[
+          {
+            icon: HandHeart,
+            title: "Relational support",
+            text: "Build familiarity, rapport and trusted relationships with young people through mentoring, listening spaces and consistent presence.",
+          },
+          {
+            icon: School,
+            title: "Overflow Hub",
+            text: "Help develop school and community-based drop-in spaces that create belonging, participation and early access to support.",
+          },
+          {
+            icon: Network,
+            title: "Pathway development",
+            text: "Coordinate personalised pathways, signposting and referrals so young people can access the right support at the right time.",
+          },
+          {
+            icon: Users,
+            title: "Partnership working",
+            text: "Work with the wider Kingdom Overflow team, schools, volunteers, community organisations and specialist partners.",
+          },
+        ]}
+      />
 
-      
+      <FeatureGrid
+        kicker="Downloads"
+        title="Read the recruitment pack and complete the application form."
+        intro="Please download the recruitment pack before applying. Applications should include a CV, a completed application form and a supporting statement of no more than two A4 pages."
+        features={[
+          {
+            icon: Download,
+            title: "Recruitment pack",
+            text: "Download the full recruitment pack for role details, responsibilities, outcomes and person specification.",
+          },
+          {
+            icon: FileText,
+            title: "Application form",
+            text: "Complete the application form and return it with your CV and supporting statement.",
+          },
+          {
+            icon: Mail,
+            title: "Submit by email",
+            text: `Send completed applications to ${contact.email}.`,
+          },
+          {
+            icon: CalendarDays,
+            title: "Closing date",
+            text: "Applications close on 3 July 2026.",
+          },
+        ]}
+      />
 
       <ProcessFlow
         kicker="Application process"
@@ -100,7 +128,7 @@ export default function VacanciesPage() {
         steps={[
           {
             title: "Read the pack",
-            text: "Download the recruitment pack and application form.",
+            text: "Download and read the recruitment pack.",
           },
           {
             title: "Prepare your CV",
@@ -108,7 +136,7 @@ export default function VacanciesPage() {
           },
           {
             title: "Write your statement",
-            text: "Submit a cover letter of no more than two A4 pages.",
+            text: "Submit a supporting statement of no more than two A4 pages.",
           },
           {
             title: "Send application",
@@ -117,20 +145,33 @@ export default function VacanciesPage() {
         ]}
       />
 
-      <section className="section">
-        <div className="container">
-          <div className="card accent">
-            <p className="kicker">A note to applicants</p>
-            <h2>Experience develops through different routes.</h2>
-            <p>
-              If you are excited by the vision, can demonstrate strong relational capability and believe you could contribute to this growing work, we encourage you to apply.
-            </p>
-            <Button href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}>
-              Apply by email
-            </Button>
-          </div>
-        </div>
-      </section>
+      <FeatureGrid
+        kicker="A note to applicants"
+        title="Experience develops through different routes."
+        intro="If you are excited by the vision, can demonstrate strong relational capability and believe you could contribute to this growing work, we encourage you to apply."
+        features={[
+          {
+            icon: HandHeart,
+            title: "Relational capability",
+            text: "We are interested in people who can build trust, listen well and create safe spaces for young people.",
+          },
+          {
+            icon: Network,
+            title: "Transferable experience",
+            text: "Relevant experience may come through youth work, education, counselling, mentoring, community work, ministry or volunteering.",
+          },
+          {
+            icon: Users,
+            title: "Shared vision",
+            text: "We are looking for people who want to help young people belong, access support and realise their potential.",
+          },
+          {
+            icon: Mail,
+            title: "Informal conversation",
+            text: `For an informal conversation, contact ${contact.email}.`,
+          },
+        ]}
+      />
     </>
   );
 }
