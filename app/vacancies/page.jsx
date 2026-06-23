@@ -7,7 +7,6 @@ import {
   Network,
   School,
   Users,
-  Mail,
 } from "lucide-react";
 import { images, contact } from "@/lib/data";
 import Button from "@/components/Button";
@@ -37,33 +36,63 @@ export default function VacanciesPage() {
         We are inviting people to help create a replicable model of relational wellbeing provision that creates lasting change for young people, families and communities.
       </Hero>
 
-      <FeatureGrid
-        kicker="Current vacancy"
-        title={roleTitle}
-        intro="A pioneering opportunity to help build connected networks of relationships, opportunities and support around young people across school and community settings."
-        features={[
-          {
-            icon: MapPin,
-            title: "Location",
-            text: "London Borough of Havering.",
-          },
-          {
-            icon: CalendarDays,
-            title: "Hours",
-            text: "40 hours per week, term time only, including some evenings and weekends.",
-          },
-          {
-            icon: Briefcase,
-            title: "Salary",
-            text: "£30,840, paid as an academic contract based on £36,300 FTE.",
-          },
-          {
-            icon: FileText,
-            title: "Deadline",
-            text: "Applications close on 3 July 2026. Interviews will take place on 6/7 July 2026.",
-          },
-        ]}
-      />
+      <section id="current-vacancy">
+  <FeatureGrid
+    kicker="Current vacancy"
+    title={roleTitle}
+    intro="A pioneering opportunity to help build connected networks of relationships, opportunities and support around young people across school and community settings."
+    features={[
+      {
+        icon: MapPin,
+        title: "Location",
+        text: "London Borough of Havering.",
+      },
+      {
+        icon: CalendarDays,
+        title: "Hours",
+        text: "40 hours per week, term time only, including some evenings and weekends.",
+      },
+      {
+        icon: Briefcase,
+        title: "Salary",
+        text: "£30,840, paid as an academic contract based on £36,300 FTE.",
+      },
+      {
+        icon: FileText,
+        title: "Deadline",
+        text: "Applications close on 3 July 2026. Interviews will take place on 6/7 July 2026.",
+      },
+    ]}
+  />
+
+  <section className="section" style={{ paddingTop: 0 }}>
+    <div className="container">
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <Button href="/downloads/recruitment-pack.pdf">
+          Download Recruitment Pack
+        </Button>
+
+        <Button href="/downloads/application-form.docx" variant="ghost">
+          Download Application Form
+        </Button>
+
+        <Button
+          href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}
+          variant="ghost"
+        >
+          Apply by Email
+        </Button>
+      </div>
+    </div>
+  </section>
+</section>
 
       <FeatureGrid
         kicker="About the role"
@@ -116,46 +145,6 @@ export default function VacanciesPage() {
   ]}
 />
 
-<section className="section">
-  <div className="container">
-    <div className="card accent">
-      <p className="kicker">Ready to apply?</p>
-      <h2>Download the documents and send your application.</h2>
-      <p>
-        If you are excited by the vision and believe you could contribute to this growing work,
-        we would love to hear from you.
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          flexWrap: "wrap",
-          marginTop: "2rem",
-        }}
-      >
-        <Button href="/downloads/recruitment-pack.pdf">
-          Download Recruitment Pack
-        </Button>
-
-        <Button href="/downloads/application-form.docx" variant="ghost">
-          Download Application Form
-        </Button>
-
-        <Button
-          href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}
-          variant="ghost"
-        >
-          Apply by Email
-        </Button>
-      </div>
-
-      <p style={{ marginTop: "1.5rem" }}>
-        Applications close on <strong>3 July 2026</strong>.
-      </p>
-    </div>
-  </div>
-</section>
 </>
   );
 }
