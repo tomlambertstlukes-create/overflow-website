@@ -94,67 +94,65 @@ export default function VacanciesPage() {
       />
 
       <ProcessFlow
-        kicker="How to apply"
-        title="Download the documents and send your application."
-        steps={[
-          {
-            title: "Read the pack",
-            text: "Download and read the full recruitment pack before applying.",
-          },
-          {
-            title: "Prepare your CV",
-            text: "Include relevant employment, voluntary experience, qualifications and training.",
-          },
-          {
-            title: "Write your statement",
-            text: "Submit a supporting statement of no more than two A4 pages.",
-          },
-          {
-            title: "Send application",
-            text: `Email your CV, statement and completed application form to ${contact.email}.`,
-          },
-        ]}
-      />
+  kicker="How to apply"
+  title="Download the documents and send your application."
+  steps={[
+    {
+      title: "Read the pack",
+      text: "Download and read the full recruitment pack before applying.",
+    },
+    {
+      title: "Prepare your CV",
+      text: "Include relevant employment, voluntary experience, qualifications and training.",
+    },
+    {
+      title: "Write your statement",
+      text: "Submit a supporting statement of no more than two A4 pages.",
+    },
+    {
+      title: "Send application",
+      text: `Email your CV, statement and completed application form to ${contact.email}.`,
+    },
+  ]}
+/>
 
-      <section className="section">
-        <div className="container">
-          <div className="card accent">
-            <p className="kicker">Ready to apply?</p>
-            <h2>Download the documents and send your application.</h2>
-            <p>
-              If you are excited by the vision and believe you could contribute to this growing work, we would love to hear from you.
-            </p>
+<section className="section">
+  <div className="container">
+    <div className="card accent">
+      <p className="kicker">Ready to apply?</p>
+      <h2>Download the documents and send your application.</h2>
+      <p>
+        If you are excited by the vision and believe you could contribute to this growing work,
+        we would love to hear from you.
+      </p>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
-                marginTop: "2rem",
-              }}
-            >
-              <Button href="/downloads/recruitment-pack.pdf">
-                Download Recruitment Pack
-              </Button>
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          flexWrap: "wrap",
+          marginTop: "2rem",
+        }}
+      >
+        <Button href="/downloads/recruitment-pack.pdf">
+          Download Recruitment Pack
+        </Button>
 
-              <Button href="/downloads/application-form.docx" variant="ghost">
-                Download Application Form
-              </Button>
+        <Button href="/downloads/application-form.docx" variant="ghost">
+          Download Application Form
+        </Button>
 
-              <Button
-                href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}
-                variant="ghost"
-              >
-                Apply by Email
-              </Button>
-            </div>
+        <Button
+          href={`mailto:${contact.email}?subject=${encodeURIComponent(roleTitle)}`}
+          variant="ghost"
+        >
+          Apply by Email
+        </Button>
+      </div>
 
-            <p style={{ marginTop: "1.5rem" }}>
-              Applications close on <strong>3 July 2026</strong>.
-            </p>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+      <p style={{ marginTop: "1.5rem" }}>
+        Applications close on <strong>3 July 2026</strong>.
+      </p>
+    </div>
+  </div>
+</section>
