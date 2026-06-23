@@ -59,60 +59,40 @@ export default function VacanciesPage() {
           {
             icon: FileText,
             title: "Deadline",
-            text: "Applications close on 30 June 2026. Interviews will take place on 3 July 2026.",
+            text: "Applications close on 3rd July 2026. Interviews will take place on 6th/7th July 2026.",
           },
         ]}
       />
-
-      <section id="current-vacancy" className="section">
-        <div className="container">
-          <div className="card">
-            <p className="kicker">About the role</p>
-            <h2>{roleTitle}</h2>
-            <p>
-              This role exists to help build relational infrastructure around young people through school and community-based settings, projects and partnerships.
-            </p>
-            <p>
-              By combining relational support, coordinated pathway development and community engagement, the postholder will help create personalised responses that enable young people to belong, access support and thrive.
-            </p>
-
-            <div className="button-row">
-              <Button href="/downloads/recruitment-pack.pdf">Download recruitment pack</Button>
-              <Button href="/downloads/application-form.docx" variant="ghost">
-                Download application form
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <FeatureGrid
-        kicker="The role in practice"
-        title="A role that connects support around young people."
-        intro="This is not simply a role that delivers interventions. It helps build the relationships, pathways, projects and partnerships that make long-term wellbeing support possible."
-        features={[
-          {
-            icon: HandHeart,
-            title: "Relational support",
-            text: "Build familiarity, rapport and trusted relationships through mentoring, listening spaces and informal wellbeing support.",
-          },
-          {
-            icon: School,
-            title: "School-based presence",
-            text: "Develop Overflow Hub provision and support a whole-school culture of wellbeing and belonging.",
-          },
-          {
-            icon: Network,
-            title: "Connected pathways",
-            text: "Coordinate referrals, signposting and personalised pathways into wider support.",
-          },
-          {
-            icon: Users,
-            title: "Community partnerships",
-            text: "Work with the wider Kingdom Overflow team, volunteers, schools, community organisations and specialist partners.",
-          },
-        ]}
-      />
+  kicker="About the role"
+  title="A pioneering role that helps build relational infrastructure around young people."
+  intro="This role exists to connect school-based provision, community opportunities, projects and partnerships so young people can access support that is relational, personalised and joined up."
+  features={[
+    {
+      icon: HandHeart,
+      title: "Relational support",
+      text: "Build familiarity, rapport and trusted relationships with young people through mentoring, listening spaces and consistent presence.",
+    },
+    {
+      icon: School,
+      title: "Overflow Hub",
+      text: "Help develop school and community-based drop-in spaces that create belonging, participation and early access to support.",
+    },
+    {
+      icon: Network,
+      title: "Pathway development",
+      text: "Coordinate personalised pathways, signposting and referrals so young people can access the right support at the right time.",
+    },
+    {
+      icon: Users,
+      title: "Partnership working",
+      text: "Work with the wider Kingdom Overflow team, schools, volunteers, community organisations and specialist partners.",
+    },
+  ]}
+/>
+
+      
 
       <ProcessFlow
         kicker="Application process"
@@ -128,7 +108,7 @@ export default function VacanciesPage() {
           },
           {
             title: "Write your statement",
-            text: "Submit a supporting statement of no more than two A4 pages.",
+            text: "Submit a cover letter of no more than two A4 pages.",
           },
           {
             title: "Send application",
