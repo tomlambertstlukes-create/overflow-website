@@ -60,7 +60,7 @@ export default function VacanciesPage() {
       {
         icon: FileText,
         title: "Deadline",
-        text: "Applications close on 3 July 2026. Interviews will take place on 6/7 July 2026.",
+        text: "Applications close on 3 July 2026 @9am. Interviews will take place on 6/7 July 2026.",
       },
     ]}
   />
