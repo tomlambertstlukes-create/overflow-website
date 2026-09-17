@@ -8,7 +8,7 @@ import ProjectPage from "@/components/ProjectPage";
 import { images } from "@/lib/data";
 
 export const metadata = {
-  title: "Overflow Wellbeing Centre | Kingdom Overflow",
+  title: "Overflow Wellbeing Centre",
   description:
     "A school and community wellbeing partnership led by a school-embedded School & Community Relational Support Coordinator.",
 };
