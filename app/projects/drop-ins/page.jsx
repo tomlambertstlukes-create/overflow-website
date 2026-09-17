@@ -8,7 +8,7 @@ import ProjectPage from "@/components/ProjectPage";
 import { images } from "@/lib/data";
 
 export const metadata = {
-  title: "Overflow Hub | Kingdom Overflow",
+  title: "Overflow Hub",
   description:
     "A welcoming community base for activities, support groups and interventions where young people can belong and stay connected.",
 };
