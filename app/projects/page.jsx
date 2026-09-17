@@ -5,7 +5,7 @@ import ProjectCards from "@/components/ProjectCards";
 import SystemModel from "@/components/SystemModel";
 
 export const metadata = {
-  title: "Projects | Kingdom Overflow",
+  title: "Projects",
   description:
     "Explore the Overflow Wellbeing Centre, Overflow Hub, Overflow Dance, Overflow Create and Overflow Football.",
 };
