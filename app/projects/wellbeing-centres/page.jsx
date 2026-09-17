@@ -1,31 +1,75 @@
-import { MessageCircle, Network, ShieldCheck, Target } from "lucide-react";
+import {
+  MessageCircle,
+  Network,
+  ShieldCheck,
+  Target,
+} from "lucide-react";
 import ProjectPage from "@/components/ProjectPage";
 import { images } from "@/lib/data";
 
+export const metadata = {
+  title: "Overflow Wellbeing Centre | Kingdom Overflow",
+  description:
+    "A school and community wellbeing partnership led by a school-embedded School & Community Relational Support Coordinator.",
+};
+
 const project = {
-  kicker: "Overflow Wellbeing Centres",
-  title: "School-based infrastructure for whole-system wellbeing.",
+  kicker: "Overflow Wellbeing Centre",
+  title: "A school and community wellbeing partnership built around young people.",
   hero:
-    "Relational Support Workers are embedded in schools to coordinate wellbeing support, build trust with young people and connect school provision into community projects and specialist pathways.",
+    "A school-embedded School & Community Relational Support Coordinator (RSC) works with schools, families, community projects, volunteers and specialist partners to increase and connect the support available around young people.",
   image: images.school,
-  imageAlt: "A school-based mentoring conversation representing embedded relational support",
+  imageAlt:
+    "A school-based mentoring conversation representing school-embedded relational support",
   whyTitle: "The coordinating role that helps the whole system connect.",
   whyIntro:
-    "Many young people do not need one more disconnected referral. They need a trusted adult who can identify needs early, coordinate the right support and stay connected beyond a short intervention.",
+    "The RSC is the central school-embedded post, supported by the School & Community Dance, Create and Football Coordinators. The role develops relationships, grows capacity and helps the right support form around each young person.",
   features: [
-    { icon: ShieldCheck, title: "Visible support", text: "A trusted presence in school that young people know how to access." },
-    { icon: MessageCircle, title: "Listening spaces", text: "Low-barrier conversations that make early help possible." },
-    { icon: Target, title: "Bespoke interventions", text: "Support shaped around the needs of each school and individual." },
-    { icon: Network, title: "Coordinated pathways", text: "Links into mentoring, counselling, community projects and external services." },
+    {
+      icon: ShieldCheck,
+      title: "Known presence",
+      text: "A trusted professional within school life who works alongside pastoral teams and the nominated school link.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Relational support",
+      text: "Accessible listening, mentoring, individual and group support shaped around identified need.",
+    },
+    {
+      icon: Target,
+      title: "Responsive provision",
+      text: "Assemblies, curriculum-linked PSHE and interventions developed with the school.",
+    },
+    {
+      icon: Network,
+      title: "Coordinated pathways",
+      text: "Connections into community activities, volunteer mentors, families and appropriately qualified specialist partners.",
+    },
   ],
-  flowTitle: "From school pressure to connected support.",
-  flowIntro: "The Wellbeing Centre is the anchor point for the wider system.",
+  flowTitle: "From school presence to a stronger network.",
+  flowIntro:
+    "The aim is not for the RSC to do all the work. The role expands the opportunities, people and partnerships available around need.",
   steps: [
-    { title: "Embed", text: "Build presence within school life and pastoral teams." },
-    { title: "Listen", text: "Create safe, accessible spaces for young people to be heard." },
-    { title: "Identify", text: "Spot needs early and understand what support is required." },
-    { title: "Coordinate", text: "Connect young people to the right project, intervention or partner." },
-    { title: "Sustain", text: "Keep long-term relational support around the young person." },
+    {
+      title: "Embed",
+      text: "Build a consistent presence within school life and pastoral systems.",
+    },
+    {
+      title: "Listen",
+      text: "Understand young people’s strengths, needs and priorities.",
+    },
+    {
+      title: "Respond",
+      text: "Offer appropriate non-clinical individual, group and universal support.",
+    },
+    {
+      title: "Coordinate",
+      text: "Bring together community pathways, volunteers and specialist partners.",
+    },
+    {
+      title: "Grow capacity",
+      text: "Recruit mentors, develop partnerships and increase the support available over time.",
+    },
   ],
 };
 
