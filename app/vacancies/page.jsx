@@ -10,7 +10,7 @@ import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 
 export const metadata = {
-  title: "Work With Us | Kingdom Overflow",
+  title: "Work With Us",
   description:
     "Current opportunities to work, volunteer or partner with Kingdom Overflow.",
 };
