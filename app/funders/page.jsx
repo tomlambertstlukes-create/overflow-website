@@ -1,45 +1,70 @@
 import { BarChart3, HeartHandshake, Network, Users } from "lucide-react";
-import { images } from "@/lib/data";
+import { images, contact } from "@/lib/data";
 import Button from "@/components/Button";
 import Hero from "@/components/Hero";
-import SignatureCard from "@/components/SignatureCard";
 import FeatureGrid from "@/components/FeatureGrid";
 import CostBlock from "@/components/CostBlock";
 import SystemModel from "@/components/SystemModel";
-import ImpactStats from "@/components/ImpactStats";
 import ProjectCards from "@/components/ProjectCards";
-import { contact } from "@/lib/data";
+
+export const metadata = {
+  title: "For Funders | Kingdom Overflow",
+  description:
+    "Invest in the relational infrastructure connecting schools, families, community projects, volunteers and specialist partners around young people in Havering.",
+};
 
 export default function FundersPage() {
   return (
     <>
       <Hero
         kicker="For funders and donors"
-        title="Invest in infrastructure-level change."
-        primary={<Button href={`mailto:${contact.email}`}>Fund a role</Button>}
-        secondary={<Button href="/impact" variant="ghost">View impact</Button>}
+        title="Invest in infrastructure-level change around young people."
+        primary={<Button href={`mailto:${contact.email}`}>Discuss funding</Button>}
+        secondary={
+          <Button href="/impact" variant="ghost">
+            Our approach to impact
+          </Button>
+        }
         image={images.funders}
-        imageAlt="Young people together in a supportive community, representing measurable relational impact"
+        imageAlt="Young people together in a supportive community"
       >
-        This is not a short-term activity fund. Your support builds the relational infrastructure that connects schools, community, church and specialist support — changing outcomes at system level.
+        Kingdom Overflow is now delivering a joined-up wellbeing partnership in
+        Havering. Funding strengthens the relational infrastructure connecting
+        schools, families, community projects, volunteers and specialist
+        partners—so capacity can grow around need.
       </Hero>
 
       <FeatureGrid
-      kicker="Why this matters"
+        kicker="Why this matters"
         title="The need is urgent, but the opportunity is strategic."
-        intro="Fragmented provision leaves young people waiting, excluded or unsupported. Funding relational infrastructure creates a connected pathway around them."
+        intro="Young people do not experience life in separate services. Investing in coordination, relationships and community pathways helps existing support work together more effectively."
         features={[
-          { icon: Users, title: "Rising need", text: "More young people are struggling with anxiety, isolation and self-worth." },
-          { icon: Network, title: "Fragmented systems", text: "Support often exists in disconnected parts, leaving young people in the gaps." },
-          { icon: HeartHandshake, title: "Relational solution", text: "Trusted presence creates engagement, early support and long-term care." },
-          { icon: BarChart3, title: "Measurable impact", text: "Outcomes are tracked through attendance, surveys, feedback and progress data." },
+          {
+            icon: Users,
+            title: "Earlier engagement",
+            text: "A known, school-embedded presence makes support easier to reach before problems escalate.",
+          },
+          {
+            icon: Network,
+            title: "Joined-up provision",
+            text: "Schools, families, volunteers, activities and specialist partners become part of one connected pathway.",
+          },
+          {
+            icon: HeartHandshake,
+            title: "Belonging beyond intervention",
+            text: "Dance, Create, Football and the Overflow Hub provide ongoing relationships and positive community.",
+          },
+          {
+            icon: BarChart3,
+            title: "Learning and evidence",
+            text: "Delivery is monitored through reach, participation, feedback, progress and partnership capacity.",
+          },
         ]}
       />
 
       <CostBlock />
       <SystemModel />
       <ProjectCards />
-      <ImpactStats />
     </>
   );
 }
