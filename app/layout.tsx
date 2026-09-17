@@ -1,11 +1,29 @@
+import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Overflow Wellbeing",
-  description:
-    "Changing the landscape of youth mental health by building relational infrastructure across schools, community and church.",
+const description =
+  "Kingdom Overflow builds relational infrastructure connecting schools, families, community projects, volunteers and specialist partners around young people.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.kingdomoverflow.org"),
+  title: {
+    default: "Kingdom Overflow",
+    template: "%s | Kingdom Overflow",
+  },
+  description,
+  openGraph: {
+    title: "Kingdom Overflow",
+    description,
+    url: "https://www.kingdomoverflow.org",
+    siteName: "Kingdom Overflow",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
