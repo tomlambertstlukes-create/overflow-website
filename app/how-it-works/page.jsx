@@ -7,7 +7,7 @@ import ProcessFlow from "@/components/ProcessFlow";
 import FeatureGrid from "@/components/FeatureGrid";
 
 export const metadata = {
-  title: "How It Works | Kingdom Overflow",
+  title: "How It Works",
   description:
     "A connected pathway that keeps young people supported before, during and beyond intervention.",
 };
