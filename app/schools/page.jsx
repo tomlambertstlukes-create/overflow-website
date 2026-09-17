@@ -15,7 +15,7 @@ import ProcessFlow from "@/components/ProcessFlow";
 import ProjectCards from "@/components/ProjectCards";
 
 export const metadata = {
-  title: "For Schools | Kingdom Overflow",
+  title: "For Schools",
   description:
     "A school and community wellbeing partnership led by a school-embedded Relational Support Coordinator and connected to community and specialist pathways.",
 };
