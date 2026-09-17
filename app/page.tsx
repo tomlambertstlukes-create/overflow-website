@@ -11,7 +11,7 @@ import AudienceCTA from "@/components/AudienceCTA";
 import ProjectCards from "@/components/ProjectCards";
 
 export const metadata = {
-  title: "Kingdom Overflow | Young people, wellbeing and community",
+  title: "Young people, wellbeing and community",
   description:
     "Kingdom Overflow is building the relational infrastructure that connects schools, families, community projects, volunteers and specialist partners around young people in Havering.",
 };
