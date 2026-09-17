@@ -13,7 +13,7 @@ import Section from "@/components/Section";
 import Kicker from "@/components/Kicker";
 
 export const metadata = {
-  title: "Impact and Learning | Kingdom Overflow",
+  title: "Impact and Learning",
   description:
     "How Kingdom Overflow will measure reach, belonging, engagement, progress and the capacity built around young people.",
 };
