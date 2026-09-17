@@ -8,7 +8,7 @@ import SystemModel from "@/components/SystemModel";
 import ProjectCards from "@/components/ProjectCards";
 
 export const metadata = {
-  title: "For Funders | Kingdom Overflow",
+  title: "For Funders",
   description:
     "Invest in the relational infrastructure connecting schools, families, community projects, volunteers and specialist partners around young people in Havering.",
 };
