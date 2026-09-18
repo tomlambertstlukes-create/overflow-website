@@ -9,7 +9,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 export const metadata = {
   title: "How It Works",
   description:
-    "A connected pathway that keeps young people supported before, during and beyond intervention.",
+    "Kingdom Overflow builds personalised networks of relationships, opportunities and support around young people across school and community life.",
 };
 
 export default function HowItWorksPage() {
@@ -17,7 +17,7 @@ export default function HowItWorksPage() {
     <>
       <Hero
         kicker="How it works"
-        title="A connected system built around the young person."
+        title="Support built around the young person—not a fixed programme."
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/projects" variant="ghost">
@@ -27,36 +27,36 @@ export default function HowItWorksPage() {
         image={images.mentoring}
         imageAlt="A trusted adult listening to a young person"
       >
-        Our model is not a linear programme. A school-embedded coordinator
-        connects school, family, community opportunities, volunteers and
-        specialist partners so young people remain connected before, during and
-        beyond intervention.
+        Every young person is different. Kingdom Overflow brings together
+        trusted relationships, school support, community opportunities, families
+        and specialist partners to create a response around their needs,
+        strengths and aspirations.
       </Hero>
 
       <ProcessFlow
-        kicker="The pathway"
-        title="Presence, relationship, support, belonging and growth."
-        intro="The aim is not to move a young person through a service and out again. It is to build lasting connection and the right support around them."
+        kicker="Connecting support"
+        title="From relational presence to the right support."
+        intro="The aim is not to move a young person through a service and out again. It is to understand the person, build the right network around them and maintain connection beyond a particular intervention."
         steps={[
           {
-            title: "Presence",
-            text: "Trusted adults are consistently present in school and community life.",
+            title: "Relational presence",
+            text: "Trusted adults become familiar, approachable and consistently available.",
           },
           {
-            title: "Relationship",
-            text: "Trust grows through repeated contact, listening and reliability.",
+            title: "Understand need",
+            text: "We listen to the young person and those around them, recognising needs, strengths and aspirations.",
           },
           {
-            title: "Support",
-            text: "Young people access appropriate mentoring, groups, learning and specialist pathways.",
+            title: "Personalised response",
+            text: "The right mix of relationship, activity, mentoring, group work or other support is shaped around the person.",
           },
           {
-            title: "Belonging",
-            text: "Support connects into Hub, Dance, Create, Football and wider community.",
+            title: "Connected network",
+            text: "School, family, community opportunities, volunteers and partners contribute rather than work in isolation.",
           },
           {
-            title: "Growth",
-            text: "Confidence, resilience, agency, relationships and hope can develop over time.",
+            title: "Targeted support",
+            text: "Where required, trusted pathways lead into appropriately qualified specialist or clinical provision.",
           },
         ]}
       />
@@ -64,28 +64,28 @@ export default function HowItWorksPage() {
       <SystemModel />
 
       <FeatureGrid
-        kicker="Why it works"
-        title="The overlap is the strategy."
+        kicker="Why relationships matter"
+        title="Support is only accessible when young people can reach, trust and use it."
         features={[
           {
-            icon: Network,
-            title: "School + community",
-            text: "Support does not stop at the school gate.",
-          },
-          {
             icon: Users,
-            title: "Participation + support",
-            text: "Young people engage through familiar people, places and activities.",
+            title: "Belonging first",
+            text: "Connection, participation and positive relationships can become the doorway into wellbeing support.",
           },
           {
             icon: MessageCircle,
-            title: "Intervention + relationship",
-            text: "Specialist input remains connected to trusted relationships around the young person.",
+            title: "Rapport-led",
+            text: "Young people are more likely to engage with support from people they know, recognise and feel comfortable with.",
+          },
+          {
+            icon: Network,
+            title: "Beyond the school gate",
+            text: "School-based support connects with community relationships and opportunities that can continue beyond the school day.",
           },
           {
             icon: Sparkles,
-            title: "Belonging + opportunity",
-            text: "Long-term change grows through connection, agency and positive routes forward.",
+            title: "Responsive, not fixed",
+            text: "Options, partnerships and pathways allow the response to change with the young person and local need.",
           },
         ]}
       />
