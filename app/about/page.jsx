@@ -13,8 +13,45 @@ import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
 import Section from "@/components/Section";
+import SystemModel from "@/components/SystemModel";
 import Kicker from "@/components/Kicker";
 import { images } from "@/lib/data";
+
+const leadershipTeam = [
+  {
+    name: "Tom Lambert",
+    role: "Director of Kingdom Overflow",
+    bio: "Tom leads Kingdom Overflow’s strategy, partnerships and development, bringing together schools, community provision, staff, volunteers, churches and specialist organisations around the vision of building relational infrastructure for young people.",
+  },
+  {
+    name: "Jess Pickering",
+    role: "School & Community Relational Support Coordinator",
+    bio: "Jess brings extensive experience across teaching, pastoral care, safeguarding, attendance, reintegration and alternative provision. She builds positive relationships with young people, schools and families, particularly supporting those facing barriers to education and helping them recognise their worth and potential.",
+  },
+];
+
+const principles = [
+  {
+    icon: HeartHandshake,
+    title: "Belonging before wellbeing",
+    text: "The antidote to isolation is connection. Somewhere to be, something to do and someone to talk to can become the doorway into deeper support.",
+  },
+  {
+    icon: Users,
+    title: "Rapport-led presence",
+    text: "The answer is not simply more programmes. Consistent, trusted presence helps young people reach, trust and use support within the worlds they already inhabit.",
+  },
+  {
+    icon: Network,
+    title: "Built around the person",
+    text: "Every young person is different. We grow options, opportunities and partnerships around their needs, strengths, aspirations and family circumstances—not ask them to fit a fixed programme.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Embedded in school and community",
+    text: "Trusted relationships begin where young people already are and remain available beyond the school gate, connecting daily school life with community belonging and opportunity.",
+  },
+];
 
 const managementGroup = [
   {
@@ -76,7 +113,7 @@ export default function AboutPage() {
     <>
       <Hero
         kicker="About Kingdom Overflow"
-        title="Building the relational infrastructure around young people."
+        title="Building support around young people—not asking young people to fit a programme."
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">
@@ -86,61 +123,90 @@ export default function AboutPage() {
         image={images.mentoring}
         imageAlt="Trusted adults supporting young people through relational wellbeing work"
       >
-        Kingdom Overflow brings schools, families, community activity,
-        volunteers and specialist partners into a connected system of
-        belonging, opportunity and support. The work is now being delivered in
-        Havering through our first school and community wellbeing partnership.
+        Kingdom Overflow builds relational infrastructure: the relationships,
+        opportunities, partnerships and pathways that help young people access
+        the right support at the right time—in and beyond the school day.
       </Hero>
 
       <Section>
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-stretch">
-          <div className="rounded-[2rem] border border-pink-400/20 bg-pink-400/10 p-8">
-            <Kicker>Delivery leadership</Kicker>
-            <div
-              aria-hidden="true"
-              className="flex h-28 w-28 items-center justify-center rounded-full bg-slate-950/55 text-3xl font-black text-pink-100"
+        <div className="mb-10 max-w-4xl">
+          <Kicker>What makes the model different</Kicker>
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+            Connection is not an addition to support. It is the foundation that
+            makes support possible.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-white/70">
+            We do not begin with a pre-set programme. We begin with the young
+            person, the relationships around them and the reality of their local
+            community.
+          </p>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {principles.map((principle) => (
+            <article
+              key={principle.title}
+              className="rounded-[1.5rem] border border-white/10 bg-white/[0.055] p-7"
             >
-              JP
-            </div>
-            <h2 className="mt-6 text-3xl font-black">Jess Pickering</h2>
-            <p className="mt-2 font-bold text-pink-200">
-              School & Community Relational Support Coordinator
-            </p>
-          </div>
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-8 sm:p-10">
-            <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-              Extensive experience across education and alternative provision.
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-white/75">
-              Jess brings extensive experience across teaching, pastoral care,
-              safeguarding, attendance, reintegration and alternative provision.
-              She is passionate about building positive relationships with young
-              people, schools and families, particularly supporting those facing
-              barriers to education and helping them recognise their worth and
-              potential.
-            </p>
-            <p className="mt-4 text-lg leading-8 text-white/70">
-              As the central school-embedded post, Jess coordinates the wider
-              team’s involvement and works collegiately with school staff,
-              volunteers, community projects and specialist partners to expand
-              the support available around need.
-            </p>
-          </div>
+              <principle.icon className="h-10 w-10 text-pink-300" />
+              <h3 className="mt-5 text-2xl font-black">{principle.title}</h3>
+              <p className="mt-3 leading-7 text-white/68">{principle.text}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <SystemModel />
+
+      <Section>
+        <div className="mb-10 max-w-4xl">
+          <Kicker>Leadership and delivery</Kicker>
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+            A growing team connecting strategy, relationships and delivery.
+          </h2>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          {leadershipTeam.map((person) => (
+            <article
+              key={person.name}
+              className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.035] p-8 sm:p-10"
+            >
+              <div
+                aria-hidden="true"
+                className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-400/15 text-2xl font-black text-pink-100"
+              >
+                {person.name
+                  .split(" ")
+                  .map((part) => part[0])
+                  .join("")}
+              </div>
+              <h3 className="mt-6 text-3xl font-black">{person.name}</h3>
+              <p className="mt-2 font-bold text-pink-200">{person.role}</p>
+              <p className="mt-5 text-lg leading-8 text-white/72">
+                {person.bio}
+              </p>
+            </article>
+          ))}
         </div>
       </Section>
 
       <Section>
         <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-8 sm:p-12">
-          <Kicker>Ethos</Kicker>
+          <Kicker>Ethos and practice</Kicker>
           <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-            Faith is the why. Young person-centred practice is the focus.
+            Faith is why. Young person-centred practice is how.
           </h2>
           <p className="mt-6 max-w-4xl text-lg leading-8 text-white/75">
             Kingdom Overflow is rooted in Christian faith and a compassionate
-            response to the needs of young people. In schools and community
-            settings, provision is inclusive, professionally accountable and
-            shaped around the young person—their voice, strengths, needs,
-            relationships and choices.
+            response to the needs of young people. Our support is inclusive,
+            without pressure and centred on each young person’s dignity, voice,
+            strengths, needs, relationships and choices.
+          </p>
+          <p className="mt-4 max-w-4xl text-lg leading-8 text-white/70">
+            We are committed to professional, trauma-informed and therapeutic
+            practice, with clear safeguarding, supervision, accountability and
+            boundaries. We work within the competence and qualifications of our
+            team; counselling and clinical provision are developed through
+            appropriately qualified partners.
           </p>
           <p className="mt-4 max-w-4xl leading-8 text-white/65">
             Kingdom Overflow operates as part of St Luke’s Cranham Park PCC,
