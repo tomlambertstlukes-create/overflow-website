@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 type HeroProps = {
   kicker?: string;
   title: string;
+  titleClassName?: string;
   children: ReactNode;
   primary?: ReactNode;
   secondary?: ReactNode;
@@ -17,6 +18,7 @@ type HeroProps = {
 export default function Hero({
   kicker,
   title,
+  titleClassName = "max-w-5xl text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl",
   children,
   primary,
   secondary,
@@ -29,7 +31,7 @@ export default function Hero({
       <div>
         {kicker && <Kicker>{kicker}</Kicker>}
 
-        <h1 className="max-w-5xl text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className={titleClassName}>
           {title}
         </h1>
 
