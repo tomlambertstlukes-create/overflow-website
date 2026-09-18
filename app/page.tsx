@@ -21,7 +21,8 @@ export default function HomePage() {
     <>
       <Hero
         kicker="Belonging • Opportunity • Support"
-        title="Transforming the landscape of youth and young adult mental health—and rebuilding youth community."
+        title="Transforming youth mental health. Rebuilding youth community."
+        titleClassName="max-w-5xl text-4xl font-black leading-[0.98] tracking-tight sm:text-5xl lg:text-6xl"
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">
@@ -31,11 +32,9 @@ export default function HomePage() {
         image={images.hero}
         imageAlt="Young people together, representing belonging and community"
       >
-        Kingdom Overflow is building the relational infrastructure that connects
-        schools, families, community projects, volunteers and specialist partners
-        around young people. In Havering, this is taking shape through a joined-up
-        school and community wellbeing partnership led by a school-embedded
-        Relational Support Coordinator.
+        Kingdom Overflow builds relational infrastructure around young people—
+        connecting schools, communities, positive activities and specialist
+        support so young people can belong, access support earlier and thrive.
       </Hero>
       <DeliveryNow />
       <ProblemSection />
