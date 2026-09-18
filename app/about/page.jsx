@@ -1,7 +1,7 @@
 import {
   BadgeCheck,
-  Church,
   ClipboardCheck,
+  GraduationCap,
   HeartHandshake,
   Network,
   ShieldCheck,
@@ -13,264 +13,339 @@ import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
 import Section from "@/components/Section";
+import SystemModel from "@/components/SystemModel";
 import Kicker from "@/components/Kicker";
 import { images } from "@/lib/data";
 
-const team = [
+const leadershipTeam = [
   {
-  name: "John Baker",
-  role: "Chair",
-  image: "/images/team/john-baker.jpg",
-  bio: "Brings over 30 years’ experience in corporate banking and finance, leading high-performing teams in London and internationally. He has since worked in charity leadership across the UK and Europe as an Operations Director, supporting organisations through change, restructuring and sustainable growth. More recently, he has served as Chair of the local Foodbank and is currently a Director of a local Outdoor Adventure Centre.",
-},
+    name: "Tom Lambert",
+    role: "Director of Kingdom Overflow",
+    bio: "Tom leads Kingdom Overflow’s strategy, partnerships and development, bringing together schools, community provision, staff, volunteers, churches and specialist organisations around the vision of building relational infrastructure for young people.",
+  },
+  {
+    name: "Jess Pickering",
+    role: "School & Community Relational Support Coordinator",
+    bio: "Jess brings extensive experience across teaching, pastoral care, safeguarding, attendance, reintegration and alternative provision. She builds positive relationships with young people, schools and families, particularly supporting those facing barriers to education and helping them recognise their worth and potential.",
+  },
+];
+
+const principles = [
+  {
+    icon: HeartHandshake,
+    title: "Belonging before wellbeing",
+    text: "The antidote to isolation is connection. Somewhere to be, something to do and someone to talk to can become the doorway into deeper support.",
+  },
+  {
+    icon: Users,
+    title: "Rapport-led presence",
+    text: "The answer is not simply more programmes. Consistent, trusted presence helps young people reach, trust and use support within the worlds they already inhabit.",
+  },
+  {
+    icon: Network,
+    title: "Built around the person",
+    text: "Every young person is different. We grow options, opportunities and partnerships around their needs, strengths, aspirations and family circumstances—not ask them to fit a fixed programme.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Embedded in school and community",
+    text: "Trusted relationships begin where young people already are and remain available beyond the school gate, connecting daily school life with community belonging and opportunity.",
+  },
+];
+
+const managementGroup = [
+  {
+    name: "John Baker",
+    role: "Chair",
+    image: "/images/team/john-baker.jpg",
+    bio: "John brings more than 30 years’ experience in corporate banking and finance, alongside charity operations, organisational change and local voluntary-sector leadership.",
+  },
   {
     name: "Trevor Bright",
     role: "Management Group",
-    image: "/images/team/trevor-bright.jpg",
-    bio: "Experience in governance and organisational leadership, supporting accountability, structure and sustainable growth.",
   },
   {
-  name: "Stuart Beck",
-  role: "Education, Governance & Mental Health",
-  image: "/images/team/stuart-beck.jpg",
-  bio: "Stuart brings over 35 years of experience in secondary education, including 30 years on the Senior Leadership Team of an Ofsted ‘Outstanding’ school in Havering, with responsibility spanning academic departments, staffing, finance and whole-school operations. He served as Chair of the Secondary Council of the National Association of Headteachers, contributing to national leadership and policy, including work around the Mental Health Green Paper, alongside engagement with NHS London and the Anna Freud Centre. Stuart also brings strong governance and project delivery experience, including former Chief Finance Officer responsibilities and leadership of a £1.1 million Heritage Lottery Fund project.",
+    name: "Stuart Beck",
+    role: "Education, Governance & Mental Health",
+    bio: "Stuart brings more than 35 years’ experience in secondary education, including senior leadership, national education representation, governance, finance and major project delivery.",
   },
   {
     name: "Paul Rose",
     role: "Management Group",
-    image: "/images/team/paul-rose.jpg",
-    bio: "Brings experience in leadership and organisational development, supporting the long-term sustainability of the work.",
   },
   {
     name: "Christine Rose",
     role: "Management Group",
-    image: "/images/team/christine-rose.jpg",
-    bio: "Experience in pastoral care and wellbeing, ensuring a strong focus on relational support and safeguarding.",
   },
   {
-  name: "Kim Elwell-Sutton",
-  role: "Education, Governance & Mental Health",
-  image: "/images/team/kim-elwell-sutton.jpg",
-  bio: "Kim brings a strong combination of education, governance and mental health insight. She holds an MSc in War and Psychiatry from King’s College London, alongside a Master’s degree in Music from Oxford University and a Postgraduate Certificate in Education. She has over 10 years’ experience teaching in international schools, working across the UK national curriculum and International Baccalaureate. Kim also advises a government-funded research group exploring therapy provision for young people with special educational needs across NHS and partner services, and has extensive governance experience across primary, secondary, charity and church contexts.",
-},
+    name: "Kim Elwell-Sutton",
+    role: "Education, Governance & Mental Health",
+    bio: "Kim brings experience across education, school and charity governance, mental health research and international teaching.",
+  },
   {
     name: "Christine Jee",
     role: "Management Group",
-    image: "/images/team/christine-jee.jpg",
-    bio: "Experience in community support and organisational leadership, strengthening governance and operational oversight.",
   },
 ];
+
+function Initials({ name }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="flex h-48 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/25 to-white/[0.055] text-4xl font-black text-pink-100"
+    >
+      {name
+        .split(" ")
+        .map((part) => part[0])
+        .join("")}
+    </div>
+  );
+}
+
+export const metadata = {
+  title: "About",
+  description:
+    "Meet the delivery and governance team behind Kingdom Overflow’s school and community wellbeing partnership in Havering.",
+};
 
 export default function AboutPage() {
   return (
     <>
       <Hero
-        kicker="About & Governance"
-        title="Experienced leadership for infrastructure-level change."
-        primary={<Button href="/funders">Partner with us</Button>}
+        kicker="About Kingdom Overflow"
+        title="Building support around young people—not asking young people to fit a programme."
+        primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">
-            See the system
+            See the model
           </Button>
         }
         image={images.mentoring}
         imageAlt="Trusted adults supporting young people through relational wellbeing work"
       >
-        Building a system that changes the landscape of youth mental health
-        requires more than good ideas. It requires trusted governance,
-        experienced oversight and safe, accountable delivery.
+        Kingdom Overflow builds relational infrastructure: the relationships,
+        opportunities, partnerships and pathways that help young people access
+        the right support at the right time—in and beyond the school day.
       </Hero>
 
       <Section>
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <Kicker>Who we are</Kicker>
-            <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-              Part of St Luke’s Cranham Park PCC.
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-white/70">
-              Kingdom Overflow is part of St Luke’s Cranham Park PCC,
-              registered charity number 1128304. Our work has grown from a
-              long-term commitment to young people, local mission and
-              community-based wellbeing.
-            </p>
-          </div>
+        <div className="mb-10 max-w-4xl">
+          <Kicker>What makes the model different</Kicker>
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+            Connection is not an addition to support. It is the foundation that
+            makes support possible.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-white/70">
+            We do not begin with a pre-set programme. We begin with the young
+            person, the relationships around them and the reality of their local
+            community.
+          </p>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {principles.map((principle) => (
+            <article
+              key={principle.title}
+              className="rounded-[1.5rem] border border-white/10 bg-white/[0.055] p-7"
+            >
+              <principle.icon className="h-10 w-10 text-pink-300" />
+              <h3 className="mt-5 text-2xl font-black">{principle.title}</h3>
+              <p className="mt-3 leading-7 text-white/68">{principle.text}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-8">
-            <h3 className="text-2xl font-black">Why governance matters</h3>
-            <p className="mt-4 leading-8 text-white/70">
-              We are not simply running activities. We are building relational
-              infrastructure across schools, community spaces, churches and
-              specialist support. That means safeguarding, accountability,
-              professional standards and experienced leadership need to sit at
-              the centre of the model.
-            </p>
+      <SystemModel />
+
+      <Section>
+        <div className="mb-10 max-w-4xl">
+          <Kicker>Leadership and delivery</Kicker>
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+            A growing team connecting strategy, relationships and delivery.
+          </h2>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          {leadershipTeam.map((person) => (
+            <article
+              key={person.name}
+              className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.035] p-8 sm:p-10"
+            >
+              <div
+                aria-hidden="true"
+                className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-400/15 text-2xl font-black text-pink-100"
+              >
+                {person.name
+                  .split(" ")
+                  .map((part) => part[0])
+                  .join("")}
+              </div>
+              <h3 className="mt-6 text-3xl font-black">{person.name}</h3>
+              <p className="mt-2 font-bold text-pink-200">{person.role}</p>
+              <p className="mt-5 text-lg leading-8 text-white/72">
+                {person.bio}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-8 sm:p-12">
+          <Kicker>Ethos and practice</Kicker>
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+            Faith is why. Young person-centred practice is how.
+          </h2>
+          <p className="mt-6 max-w-4xl text-lg leading-8 text-white/75">
+            Kingdom Overflow is rooted in Christian faith and a compassionate
+            response to the needs of young people. Our support is inclusive,
+            without pressure and centred on each young person’s dignity, voice,
+            strengths, needs, relationships and choices.
+          </p>
+          <p className="mt-4 max-w-4xl text-lg leading-8 text-white/70">
+            We are committed to professional, trauma-informed and therapeutic
+            practice, with clear safeguarding, supervision, accountability and
+            boundaries. We work within the competence and qualifications of our
+            team; counselling and clinical provision are developed through
+            appropriately qualified partners.
+          </p>
+          <p className="mt-4 max-w-4xl leading-8 text-white/65">
+            Kingdom Overflow operates as part of St Luke’s Cranham Park PCC,
+            registered charity number 1128304. Information about our church
+            context and faith pathways is available separately.
+          </p>
+          <div className="mt-8">
+            <Button href="/churches" variant="ghost">
+              Church and faith
+            </Button>
           </div>
         </div>
       </Section>
 
       <FeatureGrid
-        kicker="Management Group"
-        title="Oversight from people with relevant experience."
-        intro="Kingdom Overflow is managed and overseen by a management group with experience across the fields needed for safe, credible and scalable delivery."
+        kicker="Governance and practice"
+        title="Experienced oversight behind safe, credible delivery."
+        intro="The management group brings together experience relevant to schools, wellbeing, community work, governance and sustainable charity delivery."
         features={[
           {
-            icon: Users,
-            title: "Youth work",
-            text: "Experience in engaging young people, developing participation and creating trusted relationships.",
-          },
-          {
-            icon: ClipboardCheck,
+            icon: GraduationCap,
             title: "Education",
-            text: "Understanding of schools, pastoral systems, curriculum links and the pressures on teaching staff.",
+            text: "Understanding of school leadership, pastoral systems, curriculum and the pressures on staff.",
           },
           {
             icon: HeartHandshake,
-            title: "Psychotherapy",
-            text: "Insight into emotional wellbeing, therapeutic support and safe practice around young people’s needs.",
+            title: "Wellbeing",
+            text: "Insight into relational, therapeutic and pastoral approaches while maintaining clear clinical boundaries.",
           },
           {
             icon: Network,
-            title: "Local authority",
-            text: "Experience of local systems, partnerships and the wider landscape of statutory and community provision.",
+            title: "Partnership",
+            text: "Experience of local systems, statutory services, community organisations and collaborative delivery.",
           },
           {
             icon: BadgeCheck,
             title: "Charity leadership",
-            text: "Governance, funding, organisational development and accountability for long-term sustainability.",
-          },
-          {
-            icon: Church,
-            title: "Church leadership",
-            text: "Oversight rooted in local church mission, pastoral care and long-term community presence.",
+            text: "Governance, finance, organisational development and accountability for sustainable growth.",
           },
           {
             icon: ShieldCheck,
-            title: "Safeguarding culture",
-            text: "Safe delivery is central to working with young people across schools, community and church settings.",
+            title: "Safeguarding",
+            text: "Safeguarding, safer recruitment, supervision and clear escalation sit at the centre of delivery.",
           },
           {
             icon: ClipboardCheck,
             title: "Professional standards",
-            text: "Policies and governance are developed for work in education and counselling contexts.",
+            text: "Policies and practice are designed for school-based work, information sharing and appropriate partnership provision.",
+          },
+          {
+            icon: Users,
+            title: "Community insight",
+            text: "Long-term local relationships help the model respond to the realities young people and families face.",
+          },
+          {
+            icon: Network,
+            title: "Non-clinical coordination",
+            text: "Kingdom Overflow does not currently provide clinical support directly; counselling and clinical provision are developed through qualified partners.",
           },
         ]}
       />
 
-  <Section className="pt-20">
-  <Kicker>Leadership & Governance</Kicker>
-  <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-    Experienced oversight behind safe, scalable delivery.
-  </h2>
-
-  <p className="mt-6 max-w-3xl text-lg leading-8 text-white/75">
-    Kingdom Overflow is overseen by a management group with experience across
-    youth work, education, psychotherapy, local authority and charity leadership.
-    This ensures the work is not only relational, but also safe, accountable and
-    capable of long-term growth.
-  </p>
-
-  <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    {team.map((person) => (
-      <div
-        key={person.name}
-        className="group rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition hover:bg-white/[0.06]"
-      >
-        <div className="overflow-hidden rounded-xl">
-          <img
-            src={person.image}
-            alt={person.name}
-            className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
-          />
+      <Section>
+        <Kicker>Management Group</Kicker>
+        <h2 className="max-w-4xl text-4xl font-black tracking-tight sm:text-5xl">
+          Oversight from people with relevant professional and community
+          experience.
+        </h2>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {managementGroup.map((person) => (
+            <article
+              key={person.name}
+              className="rounded-2xl border border-white/10 bg-white/[0.04] p-6"
+            >
+              {person.image ? (
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  className="h-48 w-full rounded-xl object-cover"
+                />
+              ) : (
+                <Initials name={person.name} />
+              )}
+              <h3 className="mt-5 text-xl font-bold">{person.name}</h3>
+              <p className="mt-1 text-sm font-semibold text-pink-300">
+                {person.role}
+              </p>
+              {person.bio && (
+                <p className="mt-3 text-sm leading-6 text-white/70">
+                  {person.bio}
+                </p>
+              )}
+            </article>
+          ))}
         </div>
-
-        <h3 className="mt-5 text-xl font-bold">{person.name}</h3>
-        <p className="text-sm text-[#F300C5] font-semibold">
-          {person.role}
-        </p>
-
-        <p className="mt-3 text-sm leading-6 text-white/70">
-          {person.bio}
-        </p>
-      </div>
-    ))}
-  </div>
-</Section>
-
-<Section>
-  <div className="rounded-[2rem] border border-emerald-400/20 bg-emerald-400/10 p-8 sm:p-12">
-    <Kicker>Governance & Safeguarding</Kicker>
-
-    <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-      Built to be trusted.
-    </h2>
-
-    <p className="mt-6 max-w-4xl text-lg leading-8 text-white/80">
-      Kingdom Overflow operates as part of St Luke’s Cranham Park PCC
-      (registered charity number 1128304). Governance and policies are in place
-      for work across education and counselling contexts, with a strong emphasis
-      on safeguarding, accountability and professional standards.
-    </p>
-
-    <p className="mt-4 max-w-4xl text-lg leading-8 text-white/75">
-      The organisation is also a member of the British Association for Counselling
-      and Psychotherapy (BACP), reflecting a commitment to recognised standards
-      in wellbeing and therapeutic practice.
-    </p>
-
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-      <Button href="/funders">Fund this work</Button>
-      <Button href="/impact" variant="ghost">View impact</Button>
-    </div>
-  </div>
-</Section>
+      </Section>
 
       <ProcessFlow
         kicker="Governance in practice"
         title="How we keep the work safe, accountable and credible."
-        intro="Our governance supports the whole system: from school-based delivery to community hubs, church-based pathways and specialist partnerships."
+        intro="Governance supports school-embedded delivery, community activity, volunteer involvement and specialist partnerships."
         steps={[
           {
             title: "Oversight",
-            text: "A management group provides leadership, accountability and strategic direction.",
+            text: "The management group provides leadership, accountability and strategic direction.",
           },
           {
-            title: "Policies",
-            text: "Governance and policies are in place for education and counselling-related work.",
+            title: "Safeguarding",
+            text: "Clear procedures, supervision and reporting routes protect young people, staff and volunteers.",
           },
           {
             title: "Partnership",
-            text: "We work with schools, churches and wellbeing partners so support is joined up.",
+            text: "Schools and specialist partners agree roles, boundaries and information-sharing arrangements.",
           },
           {
-            title: "Measurement",
-            text: "Impact is tracked through attendance, feedback, school reports and progress data.",
+            title: "Learning",
+            text: "Reach, feedback, progress and partnership capacity inform improvement.",
           },
           {
             title: "Sustainability",
-            text: "The model is designed to become replicable, sustainable and scalable over time.",
+            text: "The model grows through volunteers, partnerships, funding and shared ownership.",
           },
         ]}
       />
 
-            <Section>
+      <Section>
         <div className="rounded-[2rem] border border-[#F300C5]/20 bg-gradient-to-br from-[#F300C5]/15 via-[#C51F5D]/10 to-white/[0.04] p-8 sm:p-12">
-          <Kicker>Our accountability</Kicker>
           <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-            Built to be trusted by schools, funders, churches and families.
+            Help build the next stage.
           </h2>
           <p className="mt-6 max-w-4xl text-lg leading-8 text-white/75">
-            Our aim is to change the landscape of youth mental health by
-            creating a connected system of support around young people. To do
-            that well, we need strong governance, clear accountability and
-            experienced leadership behind every project, partnership and
-            intervention.
+            We welcome conversations with schools, funders, community
+            organisations, volunteers and appropriately qualified specialist
+            partners who share the ambition for long-term change.
           </p>
-
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="/funders">Fund this work</Button>
-            <Button href="/projects" variant="ghost">
-              View projects
+            <Button href="/schools">Partner with us</Button>
+            <Button href="/funders" variant="ghost">
+              Fund this work
             </Button>
           </div>
         </div>

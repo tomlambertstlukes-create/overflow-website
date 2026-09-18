@@ -1,22 +1,38 @@
 import Button from "@/components/Button";
 import { images } from "@/lib/data";
 import Hero from "@/components/Hero";
-import SignatureCard from "@/components/SignatureCard";
 import ProjectCards from "@/components/ProjectCards";
 import SystemModel from "@/components/SystemModel";
+
+export const metadata = {
+  title: "Projects",
+  description:
+    "Explore the Overflow Wellbeing Centre, Overflow Hub, Overflow Dance, Overflow Create and Overflow Football.",
+};
 
 export default function ProjectsPage() {
   return (
     <>
       <Hero
-        kicker="Projects"
-        title="The connected projects that make the system work."
-        primary={<Button href="/projects/wellbeing-centres">Start with Wellbeing Centres</Button>}
-        secondary={<Button href="/how-it-works" variant="ghost">See the system</Button>}
+        kicker="Connected delivery"
+        title="Practical pathways into belonging, confidence and support."
+        primary={
+          <Button href="/projects/wellbeing-centres">
+            Explore the Wellbeing Centre
+          </Button>
+        }
+        secondary={
+          <Button href="/how-it-works" variant="ghost">
+            See the whole system
+          </Button>
+        }
         image={images.projects}
-        imageAlt="Young people taking part in community activities, representing connected projects"
+        imageAlt="Young people together, representing connected community projects"
       >
-        These are not isolated activities. Each project is a doorway into belonging, early support, targeted intervention and long-term relational care.
+        Overflow Dance, Create, Football and the Overflow Hub are not isolated
+        activities. They connect with the school-embedded RSC and wider partners
+        to create familiar routes into positive community and ongoing
+        relationships.
       </Hero>
       <ProjectCards showHeader={false} />
       <SystemModel />

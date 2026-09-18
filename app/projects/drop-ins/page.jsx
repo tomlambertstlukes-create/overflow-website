@@ -1,67 +1,78 @@
-import { Coffee, HeartHandshake, Home, Users } from "lucide-react";
+import {
+  Coffee,
+  HeartHandshake,
+  Home,
+  Network,
+} from "lucide-react";
 import ProjectPage from "@/components/ProjectPage";
 import { images } from "@/lib/data";
 
+export const metadata = {
+  title: "Overflow Hub",
+  description:
+    "A welcoming community base for activities, support groups and interventions where young people can belong and stay connected.",
+};
+
 const project = {
-  kicker: "Drop-ins & Community Hubs",
-  title: "Safe spaces beyond school where young people can belong and be known.",
+  kicker: "Overflow Hub",
+  title: "A welcoming community base where young people can belong and be known.",
   hero:
-    "Drop-ins and community hubs are the places where the system becomes relational: young people can turn up, feel welcome, be known and stay connected to support beyond school hours.",
+    "The Overflow Hub brings activities, trusted adults, support groups and responsive interventions together beyond the school day. It provides continuity, community and accessible routes into further support.",
   image: images.dropins,
   imageAlt:
     "Young people gathered in a relaxed community hub, representing safe space and belonging",
   whyTitle: "Support should not stop at the school gate.",
   whyIntro:
-    "Many young people need somewhere to go, something positive to do and someone safe to talk to. Community hubs create the continuity that short-term interventions often cannot provide.",
+    "Young people need positive places to go, things to do and people who know them. The Hub connects school sign-up with out-of-school opportunities and keeps relationships active beyond a single intervention.",
   features: [
     {
       icon: Coffee,
-      title: "Hospitality",
-      text: "Welcoming spaces where young people feel safe and wanted.",
+      title: "Welcome",
+      text: "An informal, hospitable environment where young people can arrive, settle and take part.",
     },
     {
       icon: Home,
       title: "Belonging",
-      text: "Consistent places that reduce isolation and build community.",
+      text: "A consistent community base that helps reduce isolation and build positive relationships.",
     },
     {
       icon: HeartHandshake,
-      title: "Relational care",
-      text: "Known adults available for conversation, support and encouragement.",
+      title: "Relational support",
+      text: "Trusted adults available for conversation, encouragement, mentoring and appropriate follow-up.",
     },
     {
-      icon: Users,
-      title: "Pathways",
-      text: "Links into sport, dance, art, mentoring, faith and specialist support.",
+      icon: Network,
+      title: "Connected pathways",
+      text: "Links into Dance, Create, Football, support groups and appropriately qualified specialist provision.",
     },
   ],
-  flowTitle: "From turning up to long-term connection.",
+  flowTitle: "From participation to ongoing connection.",
   flowIntro:
-    "Drop-ins keep young people connected beyond school, beyond crisis and beyond single interventions.",
+    "The Hub is part of the wider school and community wellbeing partnership, not a standalone youth session.",
   steps: [
     {
       title: "Welcome",
-      text: "Young people enter a safe, informal and hospitable space.",
+      text: "Young people enter a safe, accessible community environment.",
     },
     {
-      title: "Belong",
-      text: "They form friendships and positive community.",
+      title: "Participate",
+      text: "Activities and groups create shared experience and confidence.",
     },
     {
       title: "Be known",
-      text: "Consistent adults build trust and notice needs.",
+      text: "Consistent adults build trust and notice strengths or emerging needs.",
     },
     {
-      title: "Access",
-      text: "Support becomes available through relationship rather than referral alone.",
+      title: "Connect",
+      text: "The team coordinates appropriate opportunities and support.",
     },
     {
-      title: "Stay connected",
-      text: "Young people remain linked into long-term community and support.",
+      title: "Keep belonging",
+      text: "Relationships continue beyond one activity, group or intervention.",
     },
   ],
 };
 
-export default function DropInsPage() {
+export default function OverflowHubPage() {
   return <ProjectPage project={project} />;
 }
