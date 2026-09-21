@@ -9,6 +9,8 @@ const project = {
     "Overflow Create helps young people express themselves, build self-worth and access support through creativity, relationship and positive community.",
   image: images.create,
   imageAlt: "Young people making art together, representing creativity, self-expression and support",
+  logo: images.createLogo,
+  logoAlt: "Overflow Create — Unleashing Sunshine",
   whyTitle: "Creativity opens conversations that might otherwise stay hidden.",
   whyIntro:
     "Art and making can help young people process emotions, explore identity and connect with trusted adults in a non-threatening environment.",

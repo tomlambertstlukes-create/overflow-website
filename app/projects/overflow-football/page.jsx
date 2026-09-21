@@ -9,6 +9,8 @@ const project = {
     "Overflow Football uses sport to engage young people, build trust and connect them into long-term support — especially those who may not access traditional wellbeing spaces.",
   image: images.football,
   imageAlt: "Young people playing football together, representing teamwork, mentoring and belonging",
+  logo: images.footballLogo,
+  logoAlt: "Overflow Football — Creating Community",
   whyTitle: "Football creates a trusted route into relationship.",
   whyIntro:
     "For many young people, sport is the easiest doorway into belonging, confidence and conversation. It gives leaders a natural setting to build trust and offer support.",

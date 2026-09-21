@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import SignatureCard from "@/components/SignatureCard";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
+import Section from "@/components/Section";
 import { contact } from "@/lib/data";
 
 export default function ChurchesPage() {
@@ -20,6 +21,31 @@ export default function ChurchesPage() {
       >
         Young people are not rejecting connection. They are looking for trusted relationships, meaningful belonging and communities where they can find identity, purpose and hope.
       </Hero>
+
+      <Section className="py-10">
+        <div className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 md:grid-cols-[0.85fr_1.15fr] md:items-center md:p-10">
+          <div className="h-24 overflow-hidden rounded-xl border border-white/10 bg-black">
+            <img
+              src={images.amLogo}
+              alt="Overflow AM — Growing Disciples"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-pink-300">
+              Church-based community
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+              Community, pastoral care and faith support for young people.
+            </h2>
+            <p className="mt-4 leading-7 text-white/70">
+              Overflow:AM creates community for young people, helps them connect
+              with Overflow Dance, Football, Create, Hub and the Kingdom
+              Overflow congregation, and provides pastoral and faith support.
+            </p>
+          </div>
+        </div>
+      </Section>
 
       <FeatureGrid
       kicker="The opportunity"
