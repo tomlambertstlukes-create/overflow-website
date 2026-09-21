@@ -54,7 +54,7 @@ export default function Navbar() {
           <Button href="/schools" variant="ghost">
             Partner
           </Button>
-          <Button href="/funders">Fund this work</Button>
+          <Button href="/support">Support us</Button>
         </div>
 
         <button
@@ -91,6 +91,13 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
+          <Button
+            href="/support"
+            className="mt-3 w-full"
+            onClick={() => setOpen(false)}
+          >
+            Support us
+          </Button>
         </div>
       )}
     </header>

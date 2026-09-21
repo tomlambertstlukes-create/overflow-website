@@ -358,8 +358,8 @@ export default function AboutPage() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button href="/schools">Partner with us</Button>
-            <Button href="/funders" variant="ghost">
-              Fund this work
+            <Button href="/support" variant="ghost">
+              Support this work
             </Button>
           </div>
         </div>
