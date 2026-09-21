@@ -13,7 +13,8 @@ export default function ChurchesPage() {
     <>
       <Hero
         kicker="For churches"
-        title="Reconnecting a generation with the Church."
+        title="Reconnecting a generation"
+        titleAccent=" with the Church."
         primary={<Button href={`mailto:${contact.email}`}>Partner your church</Button>}
         secondary={<Button href="/how-it-works" variant="ghost">Explore the pathway</Button>}
         image={images.church}

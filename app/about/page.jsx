@@ -21,7 +21,7 @@ const leadershipTeam = [
   {
     name: "Tom Lambert",
     role: "Director of Kingdom Overflow",
-    bio: "Tom leads Kingdom Overflow’s strategy, partnerships and development, bringing together schools, community provision, staff, volunteers, churches and specialist organisations around the vision of building relational infrastructure for young people.",
+    bio: "Tom has more than two decades of youth work experience spanning detached youth work, wellbeing programmes, faith-based youth work, safeguarding, mentoring and coaching. He leads Kingdom Overflow’s strategy, partnerships and development, bringing together schools, community provision, staff, volunteers, churches and specialist organisations. Tom is passionate about helping every young person recognise their worth and achieve their potential.",
   },
   {
     name: "Jess Pickering",
@@ -114,7 +114,8 @@ export default function AboutPage() {
     <>
       <Hero
         kicker="About Kingdom Overflow"
-        title="Building support around young people—not asking young people to fit a programme."
+        title="Building support around young people"
+        titleAccent="—not asking young people to fit a programme."
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">

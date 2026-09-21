@@ -17,7 +17,8 @@ export default function HowItWorksPage() {
     <>
       <Hero
         kicker="How it works"
-        title="Support built around the young person—not a fixed programme."
+        title="Support built around the young person"
+        titleAccent="—not a fixed programme."
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
           <Button href="/projects" variant="ghost">

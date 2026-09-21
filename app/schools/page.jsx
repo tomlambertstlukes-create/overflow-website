@@ -25,7 +25,8 @@ export default function SchoolsPage() {
     <>
       <Hero
         kicker="For schools"
-        title="A connected wellbeing partnership built for real school life."
+        title="A connected wellbeing partnership"
+        titleAccent=" built for real school life."
         primary={<Button href={`mailto:${contact.email}`}>Book a conversation</Button>}
         secondary={
           <Button href="/projects/wellbeing-centres" variant="ghost">

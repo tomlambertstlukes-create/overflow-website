@@ -5,6 +5,29 @@ import ProcessFlow from "@/components/ProcessFlow";
 import ProjectCards from "@/components/ProjectCards";
 import { contact } from "@/lib/data";
 
+const projectHeroTitles = {
+  "A welcoming community base where young people can belong and be known.": [
+    "A welcoming community base where young people can",
+    " belong and be known.",
+  ],
+  "A creative wellbeing pathway through art, expression and connection.": [
+    "A creative wellbeing pathway through",
+    " art, expression and connection.",
+  ],
+  "A creative wellbeing pathway through movement, confidence and belonging.": [
+    "A creative wellbeing pathway through",
+    " movement, confidence and belonging.",
+  ],
+  "A sport-based wellbeing pathway for belonging, mentoring and confidence.": [
+    "A sport-based wellbeing pathway for",
+    " belonging, mentoring and confidence.",
+  ],
+  "A school and community wellbeing partnership built around young people.": [
+    "A school and community wellbeing partnership",
+    " built around young people.",
+  ],
+};
+
 function ProjectTestimonial({ testimonial }) {
   if (!testimonial) return null;
 
@@ -50,11 +73,17 @@ function ProjectTestimonial({ testimonial }) {
 }
 
 export default function ProjectPage({ project }) {
+  const [heroTitle, heroTitleAccent] = projectHeroTitles[project.title] || [
+    project.title,
+    null,
+  ];
+
   return (
     <>
       <Hero
         kicker={project.kicker}
-        title={project.title}
+        title={heroTitle}
+        titleAccent={heroTitleAccent}
         primary={<Button href={`mailto:${contact.email}`}>Talk to us</Button>}
         secondary={
           <Button href="/projects" variant="ghost">
