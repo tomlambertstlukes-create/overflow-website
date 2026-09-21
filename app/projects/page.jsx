@@ -15,7 +15,8 @@ export default function ProjectsPage() {
     <>
       <Hero
         kicker="Connected delivery"
-        title="Practical pathways into belonging, confidence and support."
+        title="Practical pathways into"
+        titleAccent=" belonging, confidence and support."
         primary={
           <Button href="/projects/wellbeing-centres">
             Explore the Wellbeing Centre

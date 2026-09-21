@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 type HeroProps = {
   kicker?: string;
   title: ReactNode;
+  titleAccent?: ReactNode;
   titleClassName?: string;
   children: ReactNode;
   primary?: ReactNode;
@@ -20,6 +21,7 @@ type HeroProps = {
 export default function Hero({
   kicker,
   title,
+  titleAccent,
   titleClassName = "max-w-5xl text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl",
   children,
   primary,
@@ -47,6 +49,9 @@ export default function Hero({
 
         <h1 className={titleClassName}>
           {title}
+          {titleAccent && (
+            <span className="text-[var(--primary)]">{titleAccent}</span>
+          )}
         </h1>
 
         <div className="mt-7 max-w-2xl text-lg leading-8 text-white/72 sm:text-xl">

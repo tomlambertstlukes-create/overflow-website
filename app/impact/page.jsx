@@ -23,7 +23,8 @@ export default function ImpactPage() {
     <>
       <Hero
         kicker="Impact and learning"
-        title="Measure what changes—and learn what needs to change."
+        title="Measure what changes"
+        titleAccent="—and learn what needs to change."
         primary={<Button href="/funders">Fund this work</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">

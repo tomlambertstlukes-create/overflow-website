@@ -20,7 +20,8 @@ export default function VacanciesPage() {
     <>
       <Hero
         kicker="Work with us"
-        title="There are no current vacancies."
+        title="There are"
+        titleAccent=" no current vacancies."
         primary={<Button href={`mailto:${contact.email}`}>Contact us</Button>}
         secondary={
           <Button href="/about" variant="ghost">

@@ -18,7 +18,8 @@ export default function FundersPage() {
     <>
       <Hero
         kicker="For funders and donors"
-        title="Invest in infrastructure-level change around young people."
+        title="Invest in infrastructure-level change"
+        titleAccent=" around young people."
         primary={<Button href={`mailto:${contact.email}`}>Discuss funding</Button>}
         secondary={
           <Button href="/impact" variant="ghost">
