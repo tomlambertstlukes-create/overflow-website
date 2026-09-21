@@ -13,7 +13,6 @@ import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
 import Section from "@/components/Section";
-import SystemModel from "@/components/SystemModel";
 import Kicker from "@/components/Kicker";
 import { images } from "@/lib/data";
 
@@ -156,8 +155,6 @@ export default function AboutPage() {
           ))}
         </div>
       </Section>
-
-      <SystemModel />
 
       <Section>
         <div className="mb-10 max-w-4xl">

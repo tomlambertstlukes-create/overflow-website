@@ -2,7 +2,6 @@ import Button from "@/components/Button";
 import { images } from "@/lib/data";
 import Hero from "@/components/Hero";
 import ProjectCards from "@/components/ProjectCards";
-import SystemModel from "@/components/SystemModel";
 
 export const metadata = {
   title: "Projects",
@@ -36,7 +35,6 @@ export default function ProjectsPage() {
         relationships.
       </Hero>
       <ProjectCards showHeader={false} />
-      <SystemModel />
     </>
   );
 }

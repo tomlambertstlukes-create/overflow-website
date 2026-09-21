@@ -4,11 +4,8 @@ import { images } from "@/lib/data";
 import DeliveryNow from "@/components/DeliveryNow";
 import ProblemSection from "@/components/ProblemSection";
 import StatementBand from "@/components/StatementBand";
-import SystemModel from "@/components/SystemModel";
 import Pillars from "@/components/Pillars";
-import JourneySection from "@/components/JourneySection";
 import AudienceCTA from "@/components/AudienceCTA";
-import ProjectCards from "@/components/ProjectCards";
 
 export const metadata = {
   title: "Young people, wellbeing and community",
@@ -40,10 +37,7 @@ export default function HomePage() {
       <DeliveryNow />
       <ProblemSection />
       <StatementBand />
-      <SystemModel />
       <Pillars />
-      <ProjectCards />
-      <JourneySection />
       <AudienceCTA />
     </>
   );

@@ -2,7 +2,6 @@ import Button from "@/components/Button";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
-import ProjectCards from "@/components/ProjectCards";
 import { contact } from "@/lib/data";
 
 const projectHeroTitles = {
@@ -113,8 +112,6 @@ export default function ProjectPage({ project }) {
       />
 
       <ProjectTestimonial testimonial={project.testimonial} />
-
-      <ProjectCards />
     </>
   );
 }
