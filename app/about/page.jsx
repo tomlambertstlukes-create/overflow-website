@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 
 import Button from "@/components/Button";
 import Hero from "@/components/Hero";
@@ -20,6 +21,7 @@ const leadershipTeam = [
   {
     name: "Tom Lambert",
     role: "Director of Kingdom Overflow",
+    image: "/images/team/tom-lambert.jpg",
     bio: "Tom has more than two decades of youth work experience spanning detached youth work, wellbeing programmes, faith-based youth work, safeguarding, mentoring and coaching. He leads Kingdom Overflow’s strategy, partnerships and development, bringing together schools, community provision, staff, volunteers, churches and specialist organisations. Tom is passionate about helping every young person recognise their worth and achieve their potential.",
   },
   {
@@ -170,9 +172,11 @@ export default function AboutPage() {
               className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.035] p-8 sm:p-10"
             >
               {person.image ? (
-                <img
+                <Image
                   src={person.image}
                   alt={person.name}
+                  width={288}
+                  height={288}
                   className="h-36 w-36 rounded-2xl object-cover object-center"
                 />
               ) : (
@@ -289,9 +293,12 @@ export default function AboutPage() {
               className="rounded-2xl border border-white/10 bg-white/[0.04] p-6"
             >
               {person.image ? (
-                <img
+                <Image
                   src={person.image}
                   alt={person.name}
+                  width={640}
+                  height={384}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="h-48 w-full rounded-xl object-cover"
                 />
               ) : (
