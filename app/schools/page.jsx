@@ -12,7 +12,7 @@ import Button from "@/components/Button";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import ProcessFlow from "@/components/ProcessFlow";
-import ProjectCards from "@/components/ProjectCards";
+import RelatedLinks from "@/components/RelatedLinks";
 
 export const metadata = {
   title: "For Schools",
@@ -126,7 +126,15 @@ export default function SchoolsPage() {
         ]}
       />
 
-      <ProjectCards />
+      <RelatedLinks
+        kicker="Connected projects"
+        title="The practical pathways that make the system work."
+        intro="Each project is a doorway into the wider partnership—creating belonging, trust, earlier support and ongoing connection."
+        links={[
+          { href: "/projects", label: "View all projects" },
+          { href: "/how-it-works", label: "See the whole system" },
+        ]}
+      />
     </>
   );
 }

@@ -4,8 +4,7 @@ import Button from "@/components/Button";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CostBlock from "@/components/CostBlock";
-import SystemModel from "@/components/SystemModel";
-import ProjectCards from "@/components/ProjectCards";
+import RelatedLinks from "@/components/RelatedLinks";
 
 export const metadata = {
   title: "For Funders",
@@ -64,8 +63,15 @@ export default function FundersPage() {
       />
 
       <CostBlock />
-      <SystemModel />
-      <ProjectCards />
+      <RelatedLinks
+        kicker="The Overflow model"
+        title="Building support around each young person."
+        intro="Every young person is different. Effective support starts by understanding their needs, strengths, aspirations and circumstances—then building the right response around them."
+        links={[
+          { href: "/how-it-works", label: "See how it works" },
+          { href: "/projects", label: "View connected projects" },
+        ]}
+      />
     </>
   );
 }

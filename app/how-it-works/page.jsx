@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import SystemModel from "@/components/SystemModel";
 import ProcessFlow from "@/components/ProcessFlow";
 import FeatureGrid from "@/components/FeatureGrid";
+import JourneySection from "@/components/JourneySection";
 
 export const metadata = {
   title: "How It Works",
@@ -63,6 +64,8 @@ export default function HowItWorksPage() {
       />
 
       <SystemModel />
+
+      <JourneySection />
 
       <FeatureGrid
         kicker="Why relationships matter"
