@@ -25,7 +25,7 @@ export default function ImpactPage() {
         kicker="Impact and learning"
         title="Measure what changes"
         titleAccent="—and learn what needs to change."
-        primary={<Button href="/funders">Fund this work</Button>}
+        primary={<Button href="/support">Support this work</Button>}
         secondary={
           <Button href="/how-it-works" variant="ghost">
             How it works

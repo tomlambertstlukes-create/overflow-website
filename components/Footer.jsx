@@ -2,6 +2,7 @@ import Link from "next/link";
 import { navItems } from "@/lib/data";
 
 const secondaryLinks = [
+  { href: "/support", label: "Support us" },
   { href: "/churches", label: "Church and faith" },
   { href: "/vacancies", label: "Work with us" },
 ];

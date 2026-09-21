@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Section from "@/components/Section";
-import { School, HandCoins, Network } from "lucide-react";
+import { School, HandCoins, HeartHandshake, Network } from "lucide-react";
 
 const audiences = [
   {
@@ -21,12 +21,18 @@ const audiences = [
     text: "Connect expertise, volunteers and specialist support into a joined-up pathway.",
     href: "/how-it-works",
   },
+  {
+    icon: HeartHandshake,
+    title: "For Supporters",
+    text: "Give directly or stay connected through occasional Kingdom Overflow updates.",
+    href: "/support",
+  },
 ];
 
 export default function AudienceCTA() {
   return (
     <Section>
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {audiences.map((item) => (
           <Link
             key={item.title}
