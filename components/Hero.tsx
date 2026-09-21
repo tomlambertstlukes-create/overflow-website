@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 type HeroProps = {
   kicker?: string;
-  title: string;
+  title: ReactNode;
   titleClassName?: string;
   children: ReactNode;
   primary?: ReactNode;
@@ -13,6 +13,8 @@ type HeroProps = {
   visual?: ReactNode;
   image?: string;
   imageAlt?: string;
+  brandImage?: string;
+  brandImageAlt?: string;
 };
 
 export default function Hero({
@@ -25,11 +27,23 @@ export default function Hero({
   visual = null,
   image,
   imageAlt = "Overflow wellbeing work with young people",
+  brandImage,
+  brandImageAlt = "",
 }: HeroProps) {
   return (
     <Section className="grid min-h-[78vh] items-center gap-12 pt-16 lg:grid-cols-[1.08fr_0.92fr]">
       <div>
-        {kicker && <Kicker>{kicker}</Kicker>}
+        {brandImage ? (
+          <div className="mb-6 h-20 w-full max-w-sm overflow-hidden rounded-xl border border-white/10 bg-black">
+            <img
+              src={brandImage}
+              alt={brandImageAlt}
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+        ) : (
+          kicker && <Kicker>{kicker}</Kicker>
+        )}
 
         <h1 className={titleClassName}>
           {title}

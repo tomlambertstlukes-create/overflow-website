@@ -9,6 +9,8 @@ const project = {
     "Overflow Dance is not just a dance project. It is a doorway into positive community, self-expression, confidence and long-term relational support.",
   image: images.dance,
   imageAlt: "Young people dancing together, representing creativity, confidence and belonging",
+  logo: images.danceLogo,
+  logoAlt: "Overflow Dance — releasing potential",
   whyTitle: "Dance helps young people express what they cannot always say.",
   whyIntro:
     "Creative movement creates confidence, friendship and a sense of belonging — especially for young people who may not naturally access traditional wellbeing support.",

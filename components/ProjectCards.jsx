@@ -27,11 +27,13 @@ export default function ProjectCards({ showHeader = true }) {
             className="group rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 transition hover:-translate-y-1 hover:bg-white/[0.08]"
           >
             {project.logo && (
-              <img
-                src={project.logo}
-                alt=""
-                className="mb-6 max-h-16 w-auto object-contain"
-              />
+              <div className="mb-6 h-20 overflow-hidden rounded-xl border border-white/10 bg-black">
+                <img
+                  src={project.logo}
+                  alt=""
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
             )}
             <div className="text-xs font-black uppercase tracking-[0.2em] text-[#E2E2D2]">
               {project.tag}

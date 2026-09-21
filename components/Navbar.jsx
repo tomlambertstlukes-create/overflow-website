@@ -27,8 +27,8 @@ export default function Navbar() {
             <div className="text-lg font-black tracking-tight text-[var(--cream)]">
               Kingdom Overflow
             </div>
-            <div className="text-xs uppercase tracking-[0.22em] text-white/50">
-              Wellbeing • Community
+            <div className="max-w-[10rem] text-[0.62rem] uppercase leading-4 tracking-[0.14em] text-white/50 sm:max-w-none sm:text-xs sm:tracking-[0.18em]">
+              Belonging • Opportunity • Wellbeing
             </div>
           </div>
         </Link>

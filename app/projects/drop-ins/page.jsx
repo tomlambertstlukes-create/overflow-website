@@ -21,6 +21,8 @@ const project = {
   image: images.dropins,
   imageAlt:
     "Young people gathered in a relaxed community hub, representing safe space and belonging",
+  logo: images.hubLogo,
+  logoAlt: "Overflow Hub — Creating community",
   whyTitle: "Support should not stop at the school gate.",
   whyIntro:
     "Young people need positive places to go, things to do and people who know them. The Hub connects school sign-up with out-of-school opportunities and keeps relationships active beyond a single intervention.",

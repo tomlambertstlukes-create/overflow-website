@@ -63,6 +63,8 @@ export default function ProjectPage({ project }) {
         }
         image={project.image}
         imageAlt={project.imageAlt}
+        brandImage={project.logo}
+        brandImageAlt={project.logoAlt}
       >
         {project.hero}
       </Hero>

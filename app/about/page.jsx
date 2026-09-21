@@ -26,6 +26,7 @@ const leadershipTeam = [
   {
     name: "Jess Pickering",
     role: "School & Community Relational Support Coordinator",
+    image: "/images/team/jess-pickering.jpg",
     bio: "Jess brings extensive experience across teaching, pastoral care, safeguarding, attendance, reintegration and alternative provision. She builds positive relationships with young people, schools and families, particularly supporting those facing barriers to education and helping them recognise their worth and potential.",
   },
 ];
@@ -170,15 +171,23 @@ export default function AboutPage() {
               key={person.name}
               className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.035] p-8 sm:p-10"
             >
-              <div
-                aria-hidden="true"
-                className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-400/15 text-2xl font-black text-pink-100"
-              >
-                {person.name
-                  .split(" ")
-                  .map((part) => part[0])
-                  .join("")}
-              </div>
+              {person.image ? (
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  className="h-36 w-36 rounded-2xl object-cover object-center"
+                />
+              ) : (
+                <div
+                  aria-hidden="true"
+                  className="flex h-24 w-24 items-center justify-center rounded-full bg-pink-400/15 text-2xl font-black text-pink-100"
+                >
+                  {person.name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")}
+                </div>
+              )}
               <h3 className="mt-6 text-3xl font-black">{person.name}</h3>
               <p className="mt-2 font-bold text-pink-200">{person.role}</p>
               <p className="mt-5 text-lg leading-8 text-white/72">
