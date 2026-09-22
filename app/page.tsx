@@ -18,8 +18,13 @@ export default function HomePage() {
     <>
       <Hero
         kicker="Belonging • Opportunity • Wellbeing"
-        title="Transforming the landscape of youth mental health and"
-        titleAccent=" rebuilding youth community."
+        title="Transforming the landscape of youth mental health"
+        titleAccent={
+          <>
+            <br />
+            and rebuilding youth community.
+          </>
+        }
         titleClassName="max-w-5xl text-4xl font-black leading-[0.98] tracking-tight sm:text-5xl lg:text-6xl"
         primary={<Button href="/schools">Partner with us</Button>}
         secondary={
