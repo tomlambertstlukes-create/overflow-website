@@ -1,19 +1,20 @@
 package org.kingdomoverflow.kiosk;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,185 +22,369 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    private static final String HOME_URL =
-            "https://overflow-website-git-5880cd-tomlambertstlukes-creates-projects.vercel.app/check-in?kiosk=android";
+    private static final String CHECKIN_URL = "https://kingdomoverflow.churchsuite.com/checkin";
+    private static final String JOIN_FORM_URL = "https://kingdomoverflow.churchsuite.com/-/forms/zqtiiald";
+    private static final String PREFS = "ko-kiosk";
+    private static final String SESSION_READY = "session-ready";
 
     private final Handler handler = new Handler(Looper.getMainLooper());
     private FrameLayout root;
-    private WebView mainWebView;
-    private FrameLayout popupLayer;
-    private WebView popupWebView;
-    private Button homeButton;
+    private WebView webView;
+    private Button floatingHomeButton;
+    private SharedPreferences prefs;
     private boolean returnScheduled = false;
+    private boolean showingHome = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         hideSystemUi();
 
+        prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
         root = new FrameLayout(this);
         root.setBackgroundColor(Color.parseColor("#141D26"));
         setContentView(root);
 
-        mainWebView = new WebView(this);
-        configureWebView(mainWebView, true);
-        root.addView(mainWebView, new FrameLayout.LayoutParams(
+        webView = new WebView(this);
+        configureWebView(webView);
+        webView.setVisibility(View.GONE);
+        root.addView(webView, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
 
-        createFallbackHomeButton();
-        createPopupLayer();
-
-        mainWebView.loadUrl(HOME_URL);
+        createFloatingHomeButton();
+        showHome();
     }
 
-    private void configureWebView(WebView webView, boolean primary) {
-        WebSettings settings = webView.getSettings();
+    private void configureWebView(WebView view) {
+        WebSettings settings = view.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setLoadsImagesAutomatically(true);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(false);
-        settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setSupportZoom(false);
         settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setSupportMultipleWindows(primary);
-        settings.setUserAgentString(settings.getUserAgentString() + " KingdomOverflowKiosk/1.0");
+        settings.setJavaScriptCanOpenWindowsAutomatically(false);
+        settings.setSupportMultipleWindows(false);
+        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        settings.setUserAgentString(settings.getUserAgentString() + " KingdomOverflowKiosk/1.1");
 
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
-        cookieManager.setAcceptThirdPartyCookies(webView, true);
+        cookieManager.setAcceptThirdPartyCookies(view, true);
 
-        webView.setBackgroundColor(Color.WHITE);
-        webView.setWebViewClient(new KioskWebViewClient(primary));
-
-        if (primary) {
-            webView.addJavascriptInterface(new CheckInBridge(), "KOKiosk");
-            webView.setWebChromeClient(new WebChromeClient() {
-                @Override
-                public boolean onCreateWindow(
-                        WebView view,
-                        boolean isDialog,
-                        boolean isUserGesture,
-                        Message resultMsg
-                ) {
-                    showPopup();
-                    WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                    transport.setWebView(popupWebView);
-                    resultMsg.sendToTarget();
-                    return true;
-                }
-            });
-        } else {
-            webView.setWebChromeClient(new WebChromeClient());
-        }
+        view.setBackgroundColor(Color.WHITE);
+        view.addJavascriptInterface(new CheckInBridge(), "KOKiosk");
+        view.setWebViewClient(new KioskWebViewClient());
     }
 
-    private void createFallbackHomeButton() {
-        homeButton = new Button(this);
-        homeButton.setText("KO Home");
-        homeButton.setTextColor(Color.WHITE);
-        homeButton.setTextSize(13f);
-        homeButton.setAllCaps(false);
-        homeButton.setBackgroundColor(Color.parseColor("#C51F5D"));
-        homeButton.setVisibility(View.GONE);
-        homeButton.setOnClickListener(v -> returnToHome());
+    private void createFloatingHomeButton() {
+        floatingHomeButton = new Button(this);
+        floatingHomeButton.setText("KO Home");
+        floatingHomeButton.setTextColor(Color.WHITE);
+        floatingHomeButton.setTextSize(13f);
+        floatingHomeButton.setAllCaps(false);
+        floatingHomeButton.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        floatingHomeButton.setBackgroundColor(Color.parseColor("#C51F5D"));
+        floatingHomeButton.setVisibility(View.GONE);
+        floatingHomeButton.setOnClickListener(v -> showHome());
 
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dp(104), dp(48));
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dp(108), dp(50));
         params.gravity = Gravity.TOP | Gravity.END;
         params.topMargin = dp(14);
         params.rightMargin = dp(14);
-        root.addView(homeButton, params);
+        root.addView(floatingHomeButton, params);
     }
 
-    private void createPopupLayer() {
-        popupLayer = new FrameLayout(this);
-        popupLayer.setBackgroundColor(Color.parseColor("#101821"));
-        popupLayer.setVisibility(View.GONE);
-
-        LinearLayout column = new LinearLayout(this);
-        column.setOrientation(LinearLayout.VERTICAL);
-        popupLayer.addView(column, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        ));
-
-        LinearLayout toolbar = new LinearLayout(this);
-        toolbar.setGravity(Gravity.CENTER_VERTICAL);
-        toolbar.setPadding(dp(16), dp(10), dp(12), dp(10));
-        toolbar.setBackgroundColor(Color.parseColor("#141D26"));
-
-        TextView title = new TextView(this);
-        title.setText("ChurchSuite");
-        title.setTextColor(Color.WHITE);
-        title.setTextSize(16f);
-        title.setTypeface(null, android.graphics.Typeface.BOLD);
-        toolbar.addView(title, new LinearLayout.LayoutParams(0, dp(52), 1f));
-
-        Button close = new Button(this);
-        close.setText("Back to KO");
-        close.setTextColor(Color.WHITE);
-        close.setTextSize(13f);
-        close.setAllCaps(false);
-        close.setBackgroundColor(Color.parseColor("#C51F5D"));
-        close.setOnClickListener(v -> closePopup());
-        toolbar.addView(close, new LinearLayout.LayoutParams(dp(118), dp(46)));
-
-        column.addView(toolbar, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(72)
-        ));
-
-        popupWebView = new WebView(this);
-        configureWebView(popupWebView, false);
-        column.addView(popupWebView, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                0,
-                1f
-        ));
-
-        root.addView(popupLayer, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        ));
+    private void clearNativeScreens() {
+        for (int i = root.getChildCount() - 1; i >= 0; i--) {
+            View child = root.getChildAt(i);
+            if (child != webView && child != floatingHomeButton) {
+                root.removeViewAt(i);
+            }
+        }
     }
 
-    private void showPopup() {
-        popupWebView.loadUrl("about:blank");
-        popupLayer.setVisibility(View.VISIBLE);
-        popupLayer.bringToFront();
+    private TextView text(String value, float size, int color, boolean bold) {
+        TextView t = new TextView(this);
+        t.setText(value);
+        t.setTextSize(size);
+        t.setTextColor(color);
+        t.setLineSpacing(0f, 1.12f);
+        if (bold) t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        return t;
     }
 
-    private void closePopup() {
-        popupWebView.loadUrl("about:blank");
-        popupLayer.setVisibility(View.GONE);
-        mainWebView.requestFocus();
+    private Button actionButton(String label, int background, int foreground) {
+        Button button = new Button(this);
+        button.setText(label);
+        button.setTextColor(foreground);
+        button.setTextSize(18f);
+        button.setAllCaps(false);
+        button.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        button.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
+        button.setPadding(dp(24), 0, dp(24), 0);
+        button.setBackgroundColor(background);
+        return button;
     }
 
-    private void returnToHome() {
+    private void showHome() {
+        showingHome = true;
         returnScheduled = false;
-        homeButton.setVisibility(View.GONE);
-        mainWebView.loadUrl(HOME_URL);
+        clearNativeScreens();
+        webView.setVisibility(View.GONE);
+        floatingHomeButton.setVisibility(View.GONE);
+
+        boolean sessionReady = prefs.getBoolean(SESSION_READY, false);
+
+        ScrollView scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
+        scroll.setBackgroundColor(Color.parseColor("#141D26"));
+
+        LinearLayout page = new LinearLayout(this);
+        page.setOrientation(LinearLayout.VERTICAL);
+        page.setPadding(dp(26), dp(34), dp(26), dp(28));
+        page.setGravity(Gravity.CENTER_HORIZONTAL);
+        scroll.addView(page, new ScrollView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        LinearLayout brand = new LinearLayout(this);
+        brand.setOrientation(LinearLayout.HORIZONTAL);
+        brand.setGravity(Gravity.CENTER_VERTICAL);
+
+        TextView mark = text("KO", 18f, Color.WHITE, true);
+        mark.setGravity(Gravity.CENTER);
+        mark.setBackgroundColor(Color.parseColor("#C51F5D"));
+        brand.addView(mark, new LinearLayout.LayoutParams(dp(58), dp(58)));
+
+        LinearLayout brandCopy = new LinearLayout(this);
+        brandCopy.setOrientation(LinearLayout.VERTICAL);
+        brandCopy.setPadding(dp(14), 0, 0, 0);
+        brandCopy.addView(text("Kingdom Overflow", 22f, Color.parseColor("#E2E2D2"), true));
+        brandCopy.addView(text("BELONGING  •  OPPORTUNITY  •  WELLBEING", 9f, Color.parseColor("#99A0AA"), false));
+        brand.addView(brandCopy);
+        page.addView(brand, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        Space s1 = new Space(this);
+        page.addView(s1, new LinearLayout.LayoutParams(1, dp(56)));
+
+        TextView hello = text("Good to see you.", 36f, Color.WHITE, true);
+        hello.setGravity(Gravity.CENTER);
+        page.addView(hello, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        TextView intro = text("Let’s get you checked in.", 27f, Color.parseColor("#F3A6C3"), true);
+        intro.setGravity(Gravity.CENTER);
+        intro.setPadding(0, dp(6), 0, 0);
+        page.addView(intro, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        TextView helper = text(
+                "Been before? Check in for today. First time with us? Register once, then you’ll be ready to check in.",
+                16f,
+                Color.parseColor("#B6BBC2"),
+                false
+        );
+        helper.setGravity(Gravity.CENTER);
+        helper.setPadding(dp(8), dp(18), dp(8), dp(28));
+        page.addView(helper, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        Button checkIn = actionButton(
+                sessionReady ? "✓  CHECK IN\n     I’ve been before" : "CHECK IN\nWaiting for staff to start today’s session",
+                sessionReady ? Color.parseColor("#E2E2D2") : Color.parseColor("#2A3440"),
+                sessionReady ? Color.parseColor("#141D26") : Color.parseColor("#8D949C")
+        );
+        checkIn.setEnabled(sessionReady);
+        checkIn.setOnClickListener(v -> openWeb(CHECKIN_URL));
+        page.addView(checkIn, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(126)
+        ));
+
+        Space s2 = new Space(this);
+        page.addView(s2, new LinearLayout.LayoutParams(1, dp(18)));
+
+        Button newHere = actionButton("＋  NEW HERE\n     First time with us", Color.parseColor("#24303C"), Color.WHITE);
+        newHere.setOnClickListener(v -> openWeb(JOIN_FORM_URL));
+        page.addView(newHere, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(126)
+        ));
+
+        Space flex = new Space(this);
+        page.addView(flex, new LinearLayout.LayoutParams(1, dp(34)));
+
+        Button staff = actionButton(
+                sessionReady ? "Staff  •  Session live" : "Staff  •  Start session",
+                Color.parseColor("#1C2630"),
+                Color.parseColor("#B6BBC2")
+        );
+        staff.setTextSize(14f);
+        staff.setGravity(Gravity.CENTER);
+        staff.setOnClickListener(v -> showStaff());
+        page.addView(staff, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(58)
+        ));
+
+        root.addView(scroll, 1, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+    }
+
+    private void showStaff() {
+        showingHome = false;
+        clearNativeScreens();
+        webView.setVisibility(View.GONE);
+        floatingHomeButton.setVisibility(View.GONE);
+
+        boolean sessionReady = prefs.getBoolean(SESSION_READY, false);
+
+        LinearLayout page = new LinearLayout(this);
+        page.setOrientation(LinearLayout.VERTICAL);
+        page.setPadding(dp(26), dp(40), dp(26), dp(30));
+        page.setBackgroundColor(Color.parseColor("#101821"));
+
+        TextView eyebrow = text("STAFF CONTROLS", 12f, Color.parseColor("#F300C5"), true);
+        page.addView(eyebrow);
+        TextView heading = text(sessionReady ? "Today’s session is live" : "Start today’s session", 31f, Color.WHITE, true);
+        heading.setPadding(0, dp(8), 0, dp(14));
+        page.addView(heading);
+
+        TextView body = text(
+                sessionReady
+                        ? "Use ChurchSuite to manage or close the current Check-In session."
+                        : "Open ChurchSuite, choose Show More → Create from gathering → choose the Gathering → confirm/save the session.",
+                16f,
+                Color.parseColor("#B6BBC2"),
+                false
+        );
+        body.setPadding(0, 0, 0, dp(26));
+        page.addView(body);
+
+        Button churchSuite = actionButton(
+                sessionReady ? "Open ChurchSuite session" : "Open ChurchSuite session setup",
+                Color.parseColor("#C51F5D"),
+                Color.WHITE
+        );
+        churchSuite.setOnClickListener(v -> openWeb(CHECKIN_URL));
+        page.addView(churchSuite, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(78)
+        ));
+
+        Space gap = new Space(this);
+        page.addView(gap, new LinearLayout.LayoutParams(1, dp(16)));
+
+        Button mark = actionButton(
+                sessionReady ? "Session is closed — return home" : "Session is live — return home",
+                Color.parseColor("#E2E2D2"),
+                Color.parseColor("#141D26")
+        );
+        mark.setOnClickListener(v -> {
+            prefs.edit().putBoolean(SESSION_READY, !sessionReady).apply();
+            showHome();
+        });
+        page.addView(mark, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(78)
+        ));
+
+        Space flex = new Space(this);
+        page.addView(flex, new LinearLayout.LayoutParams(1, 0, 1f));
+
+        Button back = actionButton("←  Back to check-in home", Color.parseColor("#1C2630"), Color.WHITE);
+        back.setGravity(Gravity.CENTER);
+        back.setOnClickListener(v -> showHome());
+        page.addView(back, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(64)
+        ));
+
+        root.addView(page, 1, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+    }
+
+    private void showError(String detail) {
+        showingHome = false;
+        clearNativeScreens();
+        webView.setVisibility(View.GONE);
+        floatingHomeButton.setVisibility(View.GONE);
+
+        LinearLayout page = new LinearLayout(this);
+        page.setOrientation(LinearLayout.VERTICAL);
+        page.setGravity(Gravity.CENTER);
+        page.setPadding(dp(32), dp(32), dp(32), dp(32));
+        page.setBackgroundColor(Color.parseColor("#141D26"));
+
+        TextView heading = text("We couldn’t load ChurchSuite", 26f, Color.WHITE, true);
+        heading.setGravity(Gravity.CENTER);
+        page.addView(heading);
+
+        TextView body = text(detail + "\n\nCheck the internet connection, then try again.", 15f, Color.parseColor("#B6BBC2"), false);
+        body.setGravity(Gravity.CENTER);
+        body.setPadding(0, dp(14), 0, dp(24));
+        page.addView(body);
+
+        Button home = actionButton("Return to KO home", Color.parseColor("#C51F5D"), Color.WHITE);
+        home.setGravity(Gravity.CENTER);
+        home.setOnClickListener(v -> showHome());
+        page.addView(home, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(70)
+        ));
+
+        root.addView(page, 1, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+    }
+
+    private void openWeb(String url) {
+        showingHome = false;
+        returnScheduled = false;
+        clearNativeScreens();
+        webView.setVisibility(View.VISIBLE);
+        webView.bringToFront();
+        floatingHomeButton.setVisibility(View.VISIBLE);
+        floatingHomeButton.bringToFront();
+        webView.loadUrl(url);
     }
 
     private void scheduleReturnAfterSuccess() {
         if (returnScheduled) return;
         returnScheduled = true;
         Toast.makeText(this, "Checked in", Toast.LENGTH_SHORT).show();
-        handler.postDelayed(this::returnToHome, 1100);
+        handler.postDelayed(this::showHome, 1200);
     }
 
-    private void injectSuccessWatcher(WebView webView) {
+    private void injectSuccessWatcher(WebView view) {
         String javascript =
                 "(function(){" +
                 "if(window.__koCheckinWatcher){return;}" +
@@ -217,9 +402,9 @@ public class MainActivity extends Activity {
                 "}" +
                 "}" +
                 "new MutationObserver(check).observe(document.documentElement,{subtree:true,childList:true,characterData:true});" +
-                "window.setInterval(check,500);check();" +
+                "window.setInterval(check,350);check();" +
                 "})();";
-        webView.evaluateJavascript(javascript, null);
+        view.evaluateJavascript(javascript, null);
     }
 
     private boolean isAllowedUrl(String url) {
@@ -230,24 +415,17 @@ public class MainActivity extends Activity {
         String host = uri.getHost();
         if (host == null) return false;
         host = host.toLowerCase();
-        return host.equals("kingdomoverflow.org")
-                || host.endsWith(".kingdomoverflow.org")
-                || host.endsWith(".vercel.app")
-                || host.equals("churchsuite.com")
-                || host.endsWith(".churchsuite.com");
+        return host.equals("churchsuite.com") || host.endsWith(".churchsuite.com");
     }
 
     private boolean isChurchSuite(String url) {
         if (url == null) return false;
         String host = Uri.parse(url).getHost();
-        return host != null && (host.equalsIgnoreCase("churchsuite.com")
-                || host.toLowerCase().endsWith(".churchsuite.com"));
+        return host != null && (host.equalsIgnoreCase("churchsuite.com") || host.toLowerCase().endsWith(".churchsuite.com"));
     }
 
     private boolean isCheckInUrl(String url) {
-        return url != null
-                && isChurchSuite(url)
-                && url.toLowerCase().contains("/checkin");
+        return url != null && isChurchSuite(url) && url.toLowerCase().contains("/checkin");
     }
 
     private int dp(int value) {
@@ -255,10 +433,7 @@ public class MainActivity extends Activity {
     }
 
     private void hideSystemUi() {
-        getWindow().setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-        );
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -277,38 +452,20 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (popupLayer.getVisibility() == View.VISIBLE) {
-            closePopup();
+        if (!webView.isShown()) {
+            if (!showingHome) showHome();
             return;
         }
-
-        String currentUrl = mainWebView.getUrl();
-        if (isChurchSuite(currentUrl)) {
-            returnToHome();
-            return;
-        }
-
-        if (mainWebView.canGoBack()) {
-            mainWebView.goBack();
-        } else {
-            returnToHome();
-        }
+        showHome();
     }
 
     @Override
     protected void onDestroy() {
-        if (popupWebView != null) popupWebView.destroy();
-        if (mainWebView != null) mainWebView.destroy();
+        if (webView != null) webView.destroy();
         super.onDestroy();
     }
 
     private final class KioskWebViewClient extends WebViewClient {
-        private final boolean primary;
-
-        private KioskWebViewClient(boolean primary) {
-            this.primary = primary;
-        }
-
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
@@ -321,21 +478,16 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-            super.onPageStarted(view, url, favicon);
-            if (primary) {
-                homeButton.setVisibility(isChurchSuite(url) ? View.VISIBLE : View.GONE);
-            }
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            if (isCheckInUrl(url)) injectSuccessWatcher(view);
         }
 
         @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            if (primary) {
-                homeButton.setVisibility(isChurchSuite(url) ? View.VISIBLE : View.GONE);
-                if (isCheckInUrl(url)) {
-                    injectSuccessWatcher(view);
-                }
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            if (request.isForMainFrame()) {
+                handler.post(() -> showError(error != null ? error.getDescription().toString() : "Unknown loading error"));
             }
         }
     }
