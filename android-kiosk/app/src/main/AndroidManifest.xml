@@ -5,9 +5,11 @@
     <application
         android:allowBackup="false"
         android:label="Kingdom Overflow Check-In"
+        android:icon="@drawable/ic_ko_launcher"
+        android:roundIcon="@drawable/ic_ko_launcher"
         android:usesCleartextTraffic="false"
         android:hardwareAccelerated="true"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        android:theme="@style/Theme.KOKiosk">
         <activity
             android:name=".MainActivity"
             android:exported="true"
