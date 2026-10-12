@@ -1,0 +1,37 @@
+name: Build KO iPad Kiosk
+
+on:
+  push:
+    branches:
+      - feature/ko-check-in-kiosk
+    paths:
+      - "ios-kiosk/**"
+      - ".github/workflows/ios-kiosk.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: |
+          cd ios-kiosk
+          xcodegen generate
+
+      - name: Build for iPad simulator
+        run: |
+          cd ios-kiosk
+          xcodebuild \
+            -project KingdomOverflowKiosk.xcodeproj \
+            -scheme KingdomOverflowKiosk \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build
