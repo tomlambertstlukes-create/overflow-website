@@ -48,7 +48,6 @@ struct ContentView: View {
 
     private let navy = Color(red: 20/255, green: 29/255, blue: 38/255)
     private let navyDeep = Color(red: 16/255, green: 24/255, blue: 33/255)
-    private let blueGrey = Color(red: 36/255, green: 52/255, blue: 71/255)
     private let cream = Color(red: 226/255, green: 226/255, blue: 210/255)
     private let pink = Color(red: 197/255, green: 31/255, blue: 93/255)
     private let hotPink = Color(red: 243/255, green: 0/255, blue: 197/255)
@@ -788,20 +787,21 @@ private struct KioskChoiceCard: View {
         }
         .padding(26)
         .frame(maxWidth: .infinity, minHeight: 255, alignment: .leading)
-        .background(
-            Group {
-                if light {
-                    cream
-                } else {
-                    LinearGradient(
-                        colors: [Color(red: 36/255, green: 48/255, blue: 60/255), Color(red: 29/255, green: 39/255, blue: 50/255)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+        .background {
+            if light {
+                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                    .fill(cream)
+            } else {
+                RoundedRectangle(cornerRadius: 30, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color(red: 36/255, green: 48/255, blue: 60/255), Color(red: 29/255, green: 39/255, blue: 50/255)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                }
-            },
-            in: RoundedRectangle(cornerRadius: 30, style: .continuous)
-        )
+            }
+        }
         .overlay(RoundedRectangle(cornerRadius: 30, style: .continuous).stroke(.white.opacity(0.09), lineWidth: 1))
         .shadow(color: .black.opacity(0.22), radius: 26, y: 12)
         .opacity(enabled ? 1 : 0.45)
