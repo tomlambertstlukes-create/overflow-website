@@ -16,9 +16,12 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.kingdomoverflow.kiosk
         PRODUCT_NAME: Kingdom Overflow Check-In
+        MARKETING_VERSION: "2.0.0"
+        CURRENT_PROJECT_VERSION: "20"
         TARGETED_DEVICE_FAMILY: "2"
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Kingdom Overflow Check-In
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
