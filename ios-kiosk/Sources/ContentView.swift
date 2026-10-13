@@ -1,5 +1,6 @@
 import SwiftUI
 import CryptoKit
+import Network
 
 private let checkInURL = URL(string: "https://kingdomoverflow.churchsuite.com/checkin")!
 private let joinURL = URL(string: "https://kingdomoverflow.churchsuite.com/-/forms/zqtiiald")!
