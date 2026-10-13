@@ -12,7 +12,7 @@
         android:hardwareAccelerated="true"
         android:theme="@style/Theme.KOKiosk">
         <activity
-            android:name=".MainActivity"
+            android:name=".KioskActivity"
             android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|uiMode">
             <intent-filter>
