@@ -1,0 +1,58 @@
+name: Build KO iPad Kiosk
+
+on:
+  push:
+    branches:
+      - feature/ko-check-in-kiosk
+    paths:
+      - "ios-kiosk/**"
+      - "public/brand/**"
+      - ".github/workflows/ios-kiosk.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bundle KO brand assets
+        run: |
+          rm -rf ios-kiosk/Sources/brand
+          cp -R public/brand ios-kiosk/Sources/brand
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: |
+          cd ios-kiosk
+          xcodegen generate
+
+      - name: Build for iPad simulator
+        run: |
+          cd ios-kiosk
+          xcodebuild \
+            -project KingdomOverflowKiosk.xcodeproj \
+            -scheme KingdomOverflowKiosk \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package iPad simulator app
+        run: |
+          cd ios-kiosk
+          APP_PATH=$(find build/DerivedData/Build/Products -path "*Debug-iphonesimulator/Kingdom Overflow Check-In.app" -print -quit)
+          test -n "$APP_PATH"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" KingdomOverflow-Kiosk-iPad-v2.0-simulator.zip
+
+      - name: Upload iPad app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingdomOverflow-Kiosk-iPad-v2.0-simulator
+          path: ios-kiosk/KingdomOverflow-Kiosk-iPad-v2.0-simulator.zip
+          if-no-files-found: error

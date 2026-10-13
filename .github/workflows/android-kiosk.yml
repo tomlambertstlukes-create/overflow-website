@@ -1,0 +1,49 @@
+name: Build KO Android Kiosk
+
+on:
+  push:
+    branches:
+      - feature/ko-check-in-kiosk
+    paths:
+      - "android-kiosk/**"
+      - "public/brand/**"
+      - ".github/workflows/android-kiosk.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Android 35 SDK
+        run: |
+          SDKMANAGER=/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10.2"
+
+      - name: Build Android v2 APK
+        run: gradle -p android-kiosk assembleDebug
+
+      - name: Rename APK
+        run: cp android-kiosk/app/build/outputs/apk/debug/app-debug.apk KingdomOverflow-Kiosk-Android-v2.0.apk
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: KingdomOverflow-Kiosk-Android-v2.0
+          path: KingdomOverflow-Kiosk-Android-v2.0.apk
+          if-no-files-found: error
