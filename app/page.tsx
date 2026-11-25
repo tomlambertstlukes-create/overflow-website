@@ -6,6 +6,7 @@ import ProblemSection from "@/components/ProblemSection";
 import StatementBand from "@/components/StatementBand";
 import Pillars from "@/components/Pillars";
 import AudienceCTA from "@/components/AudienceCTA";
+import RecruitmentBanner from "@/components/RecruitmentBanner";
 
 export const metadata = {
   title: "Young people, wellbeing and community",
@@ -39,6 +40,7 @@ export default function HomePage() {
         connecting schools, communities, positive activities and specialist
         support so young people can belong, access support earlier and thrive.
       </Hero>
+      <RecruitmentBanner />
       <DeliveryNow />
       <ProblemSection />
       <StatementBand />
