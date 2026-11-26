@@ -38,7 +38,7 @@ export default function HomePage() {
       >
         Kingdom Overflow builds relational infrastructure around young people—
         connecting schools, communities, positive activities and specialist
-        support so young people can belong, access support earlier and thrive.
+        support so they can belong, access support earlier and thrive.
       </Hero>
       <RecruitmentBanner />
       <DeliveryNow />
